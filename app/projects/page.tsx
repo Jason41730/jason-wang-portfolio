@@ -55,6 +55,35 @@ export default function Projects() {
       demo: "https://planova-smart-financial-planner.vercel.app/",
       lineBot: "https://line.me/R/ti/p/@129sanuz",
     },
+    {
+      id: "travel-planner-bot",
+      title: "旅遊規劃助手",
+      titleEn: "Travel Planner Bot",
+      subtitle: "LINE Bot with ChatGPT - 智慧旅遊規劃助手",
+      subtitleEn: "LINE Bot with ChatGPT - Intelligent Travel Planning Assistant",
+      description:
+        "整合 LINE Messaging API 與 OpenAI ChatGPT 的智慧聊天機器人，支援使用自然語言與 LINE 溝通，透過 LLM 進行旅遊行程規劃、支出管理、行程查詢等功能，並維持對話脈絡。",
+      descriptionEn:
+        "An intelligent chatbot integrating LINE Messaging API with OpenAI ChatGPT, supporting natural language communication via LINE, powered by LLM for travel itinerary planning, expense management, trip queries, and maintaining conversation context.",
+      tech: ["Next.js", "TypeScript", "LINE Bot", "MongoDB", "OpenAI", "LLM"],
+      image: "/images/travelbot-planning.jpg",
+      demo: "https://wp1141-five-chi.vercel.app/admin",
+      lineBot: "https://line.me/R/ti/p/@500bqphk",
+    },
+    {
+      id: "social-media-app",
+      title: "社群網站",
+      titleEn: "Social Media App",
+      subtitle: "X Clone - 社群媒體平台",
+      subtitleEn: "X Clone - Social Media Platform",
+      description:
+        "一個類似 Twitter/X 的社群網站，支援 OAuth 登入、發文、回覆、轉發、按讚、追蹤等完整社群功能，並使用 Pusher 實現即時更新，提供流暢的社群互動體驗。",
+      descriptionEn:
+        "A Twitter/X-like social media platform with complete social features including OAuth login, posts, replies, reposts, likes, follows, and real-time updates powered by Pusher for seamless social interactions.",
+      tech: ["Next.js", "TypeScript", "NextAuth", "Prisma", "MongoDB", "Pusher", "Cloudinary"],
+      image: "/images/social-media-app.jpg",
+      demo: "https://hw5-lyart.vercel.app/",
+    },
   ];
 
   return (
