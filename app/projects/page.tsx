@@ -84,6 +84,20 @@ export default function Projects() {
       image: "/images/social-profile.png",
       demo: "https://hw5-lyart.vercel.app/",
     },
+    {
+      id: "restaurant-explorer",
+      title: "店家探索與記錄系統",
+      titleEn: "Restaurant Explorer",
+      subtitle: "Google Maps 店家探索與記錄系統",
+      subtitleEn: "Google Maps Restaurant Explorer & Record System",
+      description:
+        "一個基於 React + Node.js + Google Maps API 的全端應用，讓使用者可以在地圖上探索、收藏和評分店家。整合 Google Maps JavaScript API、Geocoding API、Directions API 實現互動式地圖、地址轉換、路線規劃等功能。",
+      descriptionEn:
+        "A full-stack application based on React + Node.js + Google Maps API, allowing users to explore, bookmark, and rate restaurants on a map. Integrates Google Maps JavaScript API, Geocoding API, and Directions API for interactive maps, address conversion, route planning, and more.",
+      tech: ["React", "TypeScript", "Node.js", "Express", "SQLite", "Google Maps API", "JWT", "Material UI"],
+      image: "/images/explorer-dashboard.png",
+      demo: "",
+    },
   ];
 
   return (
@@ -109,16 +123,40 @@ export default function Projects() {
                   className="bg-white rounded-lg shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border border-gray-200 overflow-hidden flex flex-col"
                 >
                   <div className="relative h-48 bg-gray-200">
-                    <Image
-                      src={project.image}
-                      alt={lang === "en" ? project.titleEn : project.title}
-                      fill
-                      className="object-cover"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = "none";
-                      }}
-                    />
+                    {project.image ? (
+                      <Image
+                        src={project.image}
+                        alt={lang === "en" ? project.titleEn : project.title}
+                        fill
+                        className="object-cover"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = "none";
+                        }}
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-green-500 to-blue-600 flex items-center justify-center">
+                        <svg
+                          className="w-16 h-16 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                          />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                          />
+                        </svg>
+                      </div>
+                    )}
                   </div>
                   <div className="p-6 flex flex-col flex-1">
                     <h3 className="text-xl font-bold text-gray-900 mb-2">
