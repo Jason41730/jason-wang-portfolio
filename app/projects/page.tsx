@@ -81,7 +81,7 @@ export default function Projects() {
       descriptionEn:
         "A Twitter/X-like social media platform with complete social features including OAuth login, posts, replies, reposts, likes, follows, and real-time updates powered by Pusher for seamless social interactions.",
       tech: ["Next.js", "TypeScript", "NextAuth", "Prisma", "MongoDB", "Pusher", "Cloudinary"],
-      image: "/images/social-media-app.jpg",
+      image: "/images/social-profile.png",
       demo: "https://hw5-lyart.vercel.app/",
     },
   ];

@@ -78,7 +78,7 @@ const interests: Interest[] = [
   },
   {
     name: "電子工程",
-    nameEn: "Electronics Engineering",
+    nameEn: "Electrical Engineering",
     description: "對硬體設計與嵌入式系統有濃厚興趣，結合軟硬體知識解決實際問題。",
     descriptionEn: "I have a strong interest in hardware design and embedded systems, combining software and hardware knowledge to solve practical problems.",
     icon: "🔌",

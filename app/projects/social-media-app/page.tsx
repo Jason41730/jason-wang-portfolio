@@ -122,23 +122,17 @@ export default function SocialMediaAppProject() {
 
           {/* Project Image */}
           <div className="mb-8 rounded-lg overflow-hidden shadow-lg">
-            <div className="relative w-full h-64 md:h-96 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-              <div className="text-white text-center">
-                <svg
-                  className="w-32 h-32 mx-auto mb-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                  />
-                </svg>
-                <p className="text-2xl font-bold">{t.title}</p>
-              </div>
+            <div className="relative w-full h-64 md:h-96 bg-gray-200">
+              <Image
+                src="/images/social-profile.png"
+                alt={t.title}
+                fill
+                className="object-cover"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = "none";
+                }}
+              />
             </div>
           </div>
 
@@ -159,6 +153,67 @@ export default function SocialMediaAppProject() {
                 <li key={index}>{feature}</li>
               ))}
             </ul>
+          </div>
+
+          {/* Project Screenshots */}
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+              {lang === "en" ? "Project Screenshots" : "專案截圖"}
+            </h2>
+            <div className="space-y-6">
+              <div className="rounded-lg overflow-hidden shadow-lg">
+                <div className="relative w-full h-80 md:h-96 bg-gray-200">
+                  <Image
+                    src="/images/social-profile.png"
+                    alt={lang === "en" ? "Profile Page" : "個人檔案頁面"}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <p className="text-center text-sm text-gray-600 mt-2">
+                  {lang === "en" ? "Profile Page" : "個人檔案頁面"}
+                </p>
+              </div>
+              <div className="rounded-lg overflow-hidden shadow-lg">
+                <div className="relative w-full h-80 md:h-96 bg-gray-200">
+                  <Image
+                    src="/images/social-home.png"
+                    alt={lang === "en" ? "Home Page" : "首頁"}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <p className="text-center text-sm text-gray-600 mt-2">
+                  {lang === "en" ? "Home Page" : "首頁"}
+                </p>
+              </div>
+              <div className="rounded-lg overflow-hidden shadow-lg">
+                <div className="relative w-full h-80 md:h-96 bg-gray-200">
+                  <Image
+                    src="/images/social-posting.png"
+                    alt={lang === "en" ? "Posting Interface" : "發文介面"}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <p className="text-center text-sm text-gray-600 mt-2">
+                  {lang === "en" ? "Posting Interface" : "發文介面"}
+                </p>
+              </div>
+              <div className="rounded-lg overflow-hidden shadow-lg">
+                <div className="relative w-full h-80 md:h-96 bg-gray-200">
+                  <Image
+                    src="/images/social-comment.png"
+                    alt={lang === "en" ? "Comment Interface" : "回覆介面"}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <p className="text-center text-sm text-gray-600 mt-2">
+                  {lang === "en" ? "Comment Interface" : "回覆介面"}
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Technologies */}
