@@ -15,6 +15,7 @@ export default function About() {
         "I have taken Web Programming courses and completed numerous projects, which have significantly improved my web development skills. For detailed information about my projects, please visit the",
       paragraph3:
         "I'm also working on research projects in the EDA Lab, enhancing my professional skills through hands-on projects.",
+      cadContestMention: "I participated in CAD Contest Problem B and achieved Excellent Award (優等) in the domestic competition. For detailed information, please visit the",
       paragraph4:
         "I have been accepted to the Graduate Institute of Electronics Engineering (GIEE) at National Taiwan University, EDA group, and will officially begin my graduate studies in September 2026.",
       paragraph5:
@@ -30,6 +31,7 @@ export default function About() {
         "我修習了網頁程式設計課程，並完成了許多專案，這些經驗大幅提升了我的網頁開發能力。關於我的專案詳情，請參閱",
       paragraph3:
         "我也在EDA實驗室做專題，透過實際的project來提升自己的專業能力。",
+      cadContestMention: "我參與了 CAD Contest Problem B 競賽，在國內賽中獲得優等獎。詳細資訊請參閱",
       paragraph4:
         "我已經確定進入國立台灣大學電子工程學研究所（NTU GIEE - Graduate Institute of Electronics Engineering）EDA組，將於2026年9月開始正式就讀。",
       paragraph5:
@@ -72,7 +74,16 @@ export default function About() {
               </a>
               {lang === "zh" ? "頁面。" : " page."}
             </p>
-            <p>{t.paragraph3}</p>
+            <p>
+              {t.paragraph3} {t.cadContestMention}{" "}
+              <a
+                href="/projects"
+                className="text-blue-600 hover:text-blue-800 underline font-medium"
+              >
+                {lang === "en" ? "Projects" : "專案"}
+              </a>
+              {lang === "zh" ? "頁面。" : " page."}
+            </p>
             <p className="font-medium text-gray-900">{t.paragraph4}</p>
             <p>
               {t.paragraph5}{" "}
