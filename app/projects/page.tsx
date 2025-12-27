@@ -26,34 +26,34 @@ export default function Projects() {
 
   const webProjects = [
     {
-      id: "smart-finance-planner",
-      title: "Planova",
-      titleEn: "Planova",
-      subtitle: "智選理財家 - LLM 驅動的智能記帳與財務規劃",
-      subtitleEn: "Smart Finance Planner - LLM-driven Expense Tracking & Financial Planning",
-      description:
-        "一個結合 Web 應用、LINE Bot 和 AI 財務規劃的智能理財服務，幫助使用者輕鬆記帳、設定目標，並獲得個人化的財務建議。",
-      descriptionEn:
-        "An intelligent financial service combining Web app, LINE Bot, and AI financial planning, helping users easily track expenses, set goals, and receive personalized financial advice.",
-      tech: ["Next.js", "TypeScript", "LINE Bot", "MongoDB", "OpenAI", "LLM"],
-      image: "/images/project-planova.jpg",
-      demo: "https://planova-smart-financial-planner.vercel.app/",
-      lineBot: "https://line.me/R/ti/p/@129sanuz",
-    },
-    {
       id: "journee",
       title: "Journee",
       titleEn: "Journee",
       subtitle: "AI 情緒日記 LINE Chatbot",
       subtitleEn: "AI Emotion Diary LINE Chatbot",
       description:
-        "一個整合 LINE Bot 與 Web 儀表板的情緒日記系統，支援 AI 情緒分析、多重登入、圖片上傳等功能。",
+        "一個整合 LINE Bot 與 Web 儀表板的情緒日記系統，支援使用自然語言與 LINE 溝通及記錄，透過 LLM 進行 AI 情緒分析、多重登入、圖片上傳等功能。",
       descriptionEn:
-        "An emotion diary system integrating LINE Bot and Web dashboard, supporting AI emotion analysis, multiple login methods, image upload, and more.",
+        "An emotion diary system integrating LINE Bot and Web dashboard, supporting natural language communication and recording via LINE, with LLM-powered AI emotion analysis, multiple login methods, image upload, and more.",
       tech: ["Next.js", "TypeScript", "LINE Bot", "MongoDB", "Cloudinary", "AI"],
       image: "/images/project-journee.jpg",
       demo: "https://journee-three.vercel.app/",
       lineBot: "https://line.me/R/ti/p/@811wwuca",
+    },
+    {
+      id: "smart-finance-planner",
+      title: "Planova",
+      titleEn: "Planova",
+      subtitle: "智選理財家 - LLM 驅動的智能記帳與財務規劃",
+      subtitleEn: "Smart Finance Planner - LLM-driven Expense Tracking & Financial Planning",
+      description:
+        "一個結合 Web 應用、LINE Bot 和 AI 財務規劃的智能理財服務，支援使用自然語言與 LINE 溝通及記錄，透過 LLM 幫助使用者輕鬆記帳、設定目標，並獲得個人化的財務建議。",
+      descriptionEn:
+        "An intelligent financial service combining Web app, LINE Bot, and AI financial planning, supporting natural language communication and recording via LINE, powered by LLM to help users easily track expenses, set goals, and receive personalized financial advice.",
+      tech: ["Next.js", "TypeScript", "LINE Bot", "MongoDB", "OpenAI", "LLM"],
+      image: "/images/planova.png",
+      demo: "https://planova-smart-financial-planner.vercel.app/",
+      lineBot: "https://line.me/R/ti/p/@129sanuz",
     },
   ];
 
@@ -77,7 +77,7 @@ export default function Projects() {
               {webProjects.map((project) => (
                 <div
                   key={project.id}
-                  className="bg-white rounded-lg shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border border-gray-200 overflow-hidden"
+                  className="bg-white rounded-lg shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border border-gray-200 overflow-hidden flex flex-col"
                 >
                   <div className="relative h-48 bg-gray-200">
                     <Image
@@ -91,7 +91,7 @@ export default function Projects() {
                       }}
                     />
                   </div>
-                  <div className="p-6">
+                  <div className="p-6 flex flex-col flex-1">
                     <h3 className="text-xl font-bold text-gray-900 mb-2">
                       {lang === "en" ? project.titleEn : project.title}
                     </h3>
@@ -115,7 +115,7 @@ export default function Projects() {
                     </div>
                     <Link
                       href={`/projects/${project.id}`}
-                      className="inline-block w-full text-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                      className="inline-block w-full text-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium mt-auto"
                     >
                       {lang === "en" ? "See More" : "查看更多"}
                     </Link>

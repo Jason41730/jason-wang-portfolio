@@ -13,10 +13,10 @@ export default function JourneeProject() {
       subtitle: "AI Emotion Diary LINE Chatbot",
       tagline: "Where moments find their meaning.",
       description:
-        "Journee is an AI-powered emotion diary system that integrates LINE Bot and Web dashboard. It allows users to record their emotions, analyze emotional trends, and browse/search/edit diaries on a web dashboard. The platform also features social functionality where users can share diaries, interact with the community, and chat with other users in real-time. Supports Google / GitHub / LINE Login binding, allowing multiple login methods for the same account.",
+        "Journee is an AI-powered emotion diary system that integrates LINE Bot and Web dashboard. Users can communicate and record emotions using natural language through LINE, powered by LLM for intelligent understanding and analysis. It allows users to record their emotions, analyze emotional trends, and browse/search/edit diaries on a web dashboard. The platform also features social functionality where users can share diaries, interact with the community, and chat with other users in real-time. Supports Google / GitHub / LINE Login binding, allowing multiple login methods for the same account.",
       features: "Core Features",
       featuresList: [
-        "Quick Chat Recording: Record emotions directly in LINE with automatic emotion analysis and tagging",
+        "Natural Language Communication: Use natural language to communicate and record emotions directly in LINE, powered by LLM for intelligent understanding and automatic emotion analysis and tagging",
         "Web Dashboard: Browse, search, and edit diaries with image upload support (Cloudinary)",
         "Multiple Login Binding: Google / GitHub / LINE Login can be bound to the same account",
         "Statistical Analysis: View emotional trends, tag distribution, and daily emotion averages",
@@ -46,10 +46,10 @@ export default function JourneeProject() {
       subtitle: "AI 情緒日記 LINE Chatbot",
       tagline: "Where moments find their meaning.",
       description:
-        "Journee 是一個整合 LINE Bot 與 Web 儀表板的 AI 情緒日記系統。讓使用者在 LINE 上隨手記錄心情、分析情緒趨勢，並在網頁儀表板上瀏覽、搜尋、編輯日記。平台還包含社群功能，使用者可以分享日記、與社群互動，並在社群內即時聊天與其他使用者交流。支援 Google / GitHub / LINE Login 綁定，同一帳號可串多個登入方式。",
+        "Journee 是一個整合 LINE Bot 與 Web 儀表板的 AI 情緒日記系統。使用者可以使用自然語言與 LINE 溝通及記錄，透過 LLM 進行智能理解與分析。讓使用者在 LINE 上隨手記錄心情、分析情緒趨勢，並在網頁儀表板上瀏覽、搜尋、編輯日記。平台還包含社群功能，使用者可以分享日記、與社群互動，並在社群內即時聊天與其他使用者交流。支援 Google / GitHub / LINE Login 綁定，同一帳號可串多個登入方式。",
       features: "核心功能",
       featuresList: [
-        "聊天速記：直接在 LINE 輸入文字即可記錄，附帶情緒分析與標籤",
+        "自然語言溝通：使用自然語言與 LINE 溝通及記錄，透過 LLM 進行智能理解，附帶自動情緒分析與標籤",
         "Web 儀表板：瀏覽/搜尋/編輯日記，支援圖片上傳（Cloudinary）",
         "多重登入綁定：Google / GitHub / LINE Login 可綁到同一個帳號",
         "統計分析：查看情緒趨勢、標籤分布、每日情緒平均",
@@ -164,6 +164,19 @@ export default function JourneeProject() {
                 </div>
                 <p className="text-center text-sm text-gray-600 mt-2">
                   {lang === "en" ? "Social Network Features" : "社群功能"}
+                </p>
+              </div>
+              <div className="rounded-lg overflow-hidden shadow-lg">
+                <div className="relative w-full h-80 md:h-96 bg-gray-200">
+                  <Image
+                    src="/images/projects-journee-diary.png"
+                    alt={lang === "en" ? "Diary Dashboard" : "日記儀表板"}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <p className="text-center text-sm text-gray-600 mt-2">
+                  {lang === "en" ? "Diary Dashboard" : "日記儀表板"}
                 </p>
               </div>
               <div className="rounded-lg overflow-hidden shadow-lg">

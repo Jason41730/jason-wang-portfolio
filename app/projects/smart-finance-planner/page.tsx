@@ -13,7 +13,7 @@ export default function SmartFinancePlannerProject() {
       subtitle: "Smart Finance Planner - LLM-driven Expense Tracking & Financial Planning",
       tagline: "LLM 驅動的全端智能記帳與財務規劃服務",
       description:
-        "Planova is an intelligent financial service that combines Web application, LINE Bot, and AI financial planning. It helps users easily track expenses, set goals, and receive personalized financial advice powered by LLM.",
+        "Planova is an intelligent financial service that combines Web application, LINE Bot, and AI financial planning. Users can communicate and record expenses using natural language through LINE, powered by LLM for intelligent understanding and analysis. It helps users easily track expenses, set goals, and receive personalized financial advice.",
       features: "Core Features",
       featuresList: [
         "Expense Management: Multi-platform tracking (Web app, LINE Bot), automatic category recognition, bidirectional sync between Web and LINE Bot",
@@ -21,7 +21,7 @@ export default function SmartFinancePlannerProject() {
         "Financial Goals: Set savings goals with completion dates, track progress in real-time, AI prediction of goal achievement time",
         "Smart Planning: LLM-driven personalized financial advice, actionable savings suggestions, AI-recommended goal priority order",
         "Savings Allocation: Total savings pool management, allocate savings to different financial goals, track allocation progress",
-        "LINE Bot Features: Natural language expense tracking, query records, view goals via Carousel, generate and view planning reports in LINE, manage savings allocation",
+        "LINE Bot Features: Natural language communication and recording via LINE, powered by LLM for intelligent understanding. Track expenses, query records, view goals via Carousel, generate and view planning reports in LINE, manage savings allocation",
       ],
       tech: "Technologies Used",
       techList: [
@@ -45,7 +45,7 @@ export default function SmartFinancePlannerProject() {
       subtitle: "智選理財家 - LLM 驅動的智能記帳與財務規劃",
       tagline: "LLM 驅動的全端智能記帳與財務規劃服務",
       description:
-        "Planova 是一個結合 Web 應用、LINE Bot 和 AI 財務規劃的智能理財服務，幫助使用者輕鬆記帳、設定目標，並獲得個人化的財務建議。",
+        "Planova 是一個結合 Web 應用、LINE Bot 和 AI 財務規劃的智能理財服務，使用者可以使用自然語言與 LINE 溝通及記錄，透過 LLM 進行智能理解與分析，幫助使用者輕鬆記帳、設定目標，並獲得個人化的財務建議。",
       features: "核心功能",
       featuresList: [
         "記帳管理：多平台記帳（Web 應用、LINE Bot），智能分類自動識別支出類別，Web 與 LINE Bot 雙向同步",
@@ -53,7 +53,7 @@ export default function SmartFinancePlannerProject() {
         "財務目標：設定儲蓄目標和完成日期，即時查看目標達成進度，AI 預測目標達成時間",
         "智能規劃：LLM 驅動的個人化財務建議，具體可執行的節省建議，AI 建議目標達成順序",
         "儲蓄分配：總儲蓄池管理，將儲蓄分配給不同財務目標，追蹤每個目標的分配進度",
-        "LINE Bot 功能：自然語言記帳，查詢記錄，Carousel 顯示所有財務目標，在 LINE 內生成並查看規劃報告，查看和編輯儲蓄分配狀況",
+        "LINE Bot 功能：使用自然語言與 LINE 溝通及記錄，透過 LLM 進行智能理解。記帳、查詢記錄，Carousel 顯示所有財務目標，在 LINE 內生成並查看規劃報告，查看和編輯儲蓄分配狀況",
       ],
       tech: "使用的技術",
       techList: [
@@ -114,7 +114,7 @@ export default function SmartFinancePlannerProject() {
           <div className="mb-8 rounded-lg overflow-hidden shadow-lg">
             <div className="relative w-full h-64 md:h-96 bg-gray-200">
               <Image
-                src="/images/project-planova.jpg"
+                src="/images/planova.png"
                 alt={t.title}
                 fill
                 className="object-cover"
@@ -143,6 +143,80 @@ export default function SmartFinancePlannerProject() {
                 <li key={index}>{feature}</li>
               ))}
             </ul>
+          </div>
+
+          {/* Project Screenshots */}
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+              {lang === "en" ? "Project Screenshots" : "專案截圖"}
+            </h2>
+            <div className="space-y-6">
+              <div className="rounded-lg overflow-hidden shadow-lg">
+                <div className="relative w-full h-80 md:h-96 bg-gray-200">
+                  <Image
+                    src="/images/planova-dashboard.png"
+                    alt={lang === "en" ? "Dashboard" : "儀表板"}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <p className="text-center text-sm text-gray-600 mt-2">
+                  {lang === "en" ? "Dashboard" : "儀表板"}
+                </p>
+              </div>
+              <div className="rounded-lg overflow-hidden shadow-lg">
+                <div className="relative w-full h-96 md:h-[500px] bg-gray-200 flex items-center justify-center">
+                  <Image
+                    src="/images/planova-line.jpg"
+                    alt={lang === "en" ? "LINE Bot Interface" : "LINE Bot 介面"}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <p className="text-center text-sm text-gray-600 mt-2">
+                  {lang === "en" ? "LINE Bot Interface" : "LINE Bot 介面"}
+                </p>
+              </div>
+              <div className="rounded-lg overflow-hidden shadow-lg">
+                <div className="relative w-full h-80 md:h-96 bg-gray-200">
+                  <Image
+                    src="/images/planova-plan.png"
+                    alt={lang === "en" ? "Financial Planning" : "財務規劃"}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <p className="text-center text-sm text-gray-600 mt-2">
+                  {lang === "en" ? "Financial Planning" : "財務規劃"}
+                </p>
+              </div>
+              <div className="rounded-lg overflow-hidden shadow-lg">
+                <div className="relative w-full h-80 md:h-96 bg-gray-200">
+                  <Image
+                    src="/images/planova-report1.jpg"
+                    alt={lang === "en" ? "Planning Report" : "規劃報告"}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <p className="text-center text-sm text-gray-600 mt-2">
+                  {lang === "en" ? "Planning Report" : "規劃報告"}
+                </p>
+              </div>
+              <div className="rounded-lg overflow-hidden shadow-lg">
+                <div className="relative w-full h-80 md:h-96 bg-gray-200">
+                  <Image
+                    src="/images/planova-reportchart.jpg"
+                    alt={lang === "en" ? "Report Chart" : "報告圖表"}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <p className="text-center text-sm text-gray-600 mt-2">
+                  {lang === "en" ? "Report Chart" : "報告圖表"}
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Technologies */}
