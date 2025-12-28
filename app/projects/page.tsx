@@ -98,6 +98,20 @@ export default function Projects() {
       image: "/images/explorer-dashboard.png",
       demo: "",
     },
+    {
+      id: "cinema-ticket-system",
+      title: "影城售票系統",
+      titleEn: "Cinema Ticket System",
+      subtitle: "React + Material UI 影城售票系統",
+      subtitleEn: "React + Material UI Cinema Ticket System",
+      description:
+        "一個基於 React TypeScript 和 Material UI 的影城售票系統，提供完整的電影瀏覽、場次選擇、購物車和結帳功能。支援搜尋、篩選、即時座位數顯示等功能。",
+      descriptionEn:
+        "A cinema ticket system based on React TypeScript and Material UI, providing complete movie browsing, showtime selection, shopping cart, and checkout functionality. Supports search, filtering, real-time seat availability display, and more.",
+      tech: ["React", "TypeScript", "Material UI", "Context API", "CSV"],
+      image: "/images/cinema-dashboard.png",
+      demo: "http://localhost:3001",
+    },
   ];
 
   return (
