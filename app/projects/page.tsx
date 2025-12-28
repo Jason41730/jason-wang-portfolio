@@ -112,6 +112,34 @@ export default function Projects() {
       image: "/images/cinema-dashboard.png",
       demo: "http://localhost:3001",
     },
+    {
+      id: "doodle-jump",
+      title: "Doodle Jump 遊戲",
+      titleEn: "Doodle Jump Game",
+      subtitle: "React TypeScript 經典跳躍遊戲",
+      subtitleEn: "React TypeScript Classic Jumping Game",
+      description:
+        "一個使用 React TypeScript 開發的 Doodle Jump 遊戲，包含完整的物理系統、多種平台類型、道具系統和音效系統。支援鍵盤控制、分數記錄、本地儲存等功能。",
+      descriptionEn:
+        "A Doodle Jump game developed with React TypeScript, featuring a complete physics system, multiple platform types, item system, and sound effects. Supports keyboard controls, score recording, local storage, and more.",
+      tech: ["React", "TypeScript", "CSS3", "Canvas", "Physics Engine"],
+      image: "/images/doodle-game.png",
+      demo: "http://localhost:3001",
+    },
+    {
+      id: "personal-portfolio",
+      title: "個人作品集網站",
+      titleEn: "Personal Portfolio Website",
+      subtitle: "Next.js + TypeScript + Tailwind CSS 個人作品集",
+      subtitleEn: "Next.js + TypeScript + Tailwind CSS Personal Portfolio",
+      description:
+        "一個使用 Next.js、TypeScript 和 Tailwind CSS 構建的現代化個人作品集網站，展示專案、技能、學術背景和興趣。支援中英文雙語切換、響應式設計、優雅的 UI/UX 設計，並整合多個專案的詳細介紹頁面。",
+      descriptionEn:
+        "A modern personal portfolio website built with Next.js, TypeScript, and Tailwind CSS, showcasing projects, skills, academic background, and interests. Features bilingual support (English/Chinese), responsive design, elegant UI/UX, and integrated detailed project pages.",
+      tech: ["Next.js", "TypeScript", "Tailwind CSS", "React", "App Router"],
+      image: "/images/portfolio-dashboard.png",
+      demo: "https://jason-wang-portfolio.vercel.app/",
+    },
   ];
 
   return (
