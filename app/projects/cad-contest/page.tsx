@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/components/LanguageProvider";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function CADContestProject() {
   const { lang } = useLanguage();
@@ -29,6 +30,8 @@ export default function CADContestProject() {
         "Project Planning: Planned 4-month workflows, systematically advanced projects, and continuously adjusted processes, greatly enhancing research and independent thinking abilities",
       ],
       backToProjects: "Back to Projects",
+      awardLink: "Official Results",
+      awardLinkText: "View Official Competition Results",
     },
     zh: {
       title: "CAD Contest Problem B",
@@ -52,6 +55,8 @@ export default function CADContestProject() {
         "專案規劃：規劃長達4個月的工作流程，系統性推進專案，並在過程中不斷調整我們的流程及專案方向，大大的增強了我們的研究及獨立思考能力",
       ],
       backToProjects: "返回專案列表",
+      awardLink: "官方結果",
+      awardLinkText: "查看官方競賽結果",
     },
   };
 
@@ -94,6 +99,18 @@ export default function CADContestProject() {
             <p className="text-sm text-gray-600">{t.group}</p>
           </div>
 
+          {/* Award Image */}
+          <div className="mb-8 rounded-lg overflow-hidden shadow-lg">
+            <div className="relative w-full h-64 md:h-96">
+              <Image
+                src="/images/cad-award.png"
+                alt={t.award}
+                fill
+                className="object-contain"
+              />
+            </div>
+          </div>
+
           {/* Description */}
           <div className="mb-8">
             <p className="text-lg text-gray-700 leading-relaxed">
@@ -123,6 +140,26 @@ export default function CADContestProject() {
                 <li key={index}>{skill}</li>
               ))}
             </ul>
+          </div>
+
+          {/* Award Link */}
+          <div className="p-6 bg-white border-2 border-gray-200 rounded-lg">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              {t.awardLink}
+            </h2>
+            <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+              <p className="text-gray-700 font-medium mb-2">
+                🏆 {t.awardLinkText}
+              </p>
+              <a
+                href="https://www.iccad-contest.org/tw/05_results.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 underline"
+              >
+                https://www.iccad-contest.org/tw/05_results.html
+              </a>
+            </div>
           </div>
         </div>
       </section>
