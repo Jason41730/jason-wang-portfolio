@@ -12,6 +12,9 @@ export default function Skills() {
       webProgramming: "Web Programming",
       webProgrammingDesc:
         "Full-stack web development with modern frameworks and technologies. I've worked with these technologies in various projects and continue to learn and improve my skills.",
+      eda: "EDA (Electronic Design Automation)",
+      edaDesc:
+        "Electronic Design Automation tools and methodologies for VLSI design optimization. I've worked with these technologies in CAD Contest research projects and continue to learn and improve my skills.",
       programmingLanguages: "Programming Languages",
       toolsFrameworks: "Tools & Frameworks",
       databases: "Databases",
@@ -25,6 +28,9 @@ export default function Skills() {
       webProgramming: "網頁程式設計",
       webProgrammingDesc:
         "全端網頁開發，使用各種現代框架與技術。我在多個專案中使用過這些技術，並持續學習和提升技能。",
+      eda: "EDA (電子設計自動化)",
+      edaDesc:
+        "用於 VLSI 設計最佳化的電子設計自動化工具與方法。我在 CAD Contest 研究專案中使用過這些技術，並持續學習和提升技能。",
       programmingLanguages: "程式語言",
       toolsFrameworks: "工具與框架",
       databases: "資料庫",
@@ -189,9 +195,74 @@ export default function Skills() {
       en: ["HTML/CSS", "Git", "GitHub", "Linux"],
       zh: ["HTML/CSS", "Git", "GitHub", "Linux"],
     },
+    eda: {
+      en: {
+        title: "EDA (Electronic Design Automation)",
+        description:
+          "Electronic Design Automation tools and methodologies for VLSI design optimization. I've worked with these technologies in CAD Contest research projects and continue to learn and improve my skills.",
+        items: [
+          {
+            category: "Design Optimization",
+            skills: ["Floorplanning", "Legalization", "Banking/Debanking", "Power Optimization", "Timing Optimization"],
+            description: {
+              en: "Optimizing VLSI designs for power, timing, and area constraints",
+              zh: "針對功耗、時序和面積限制進行 VLSI 設計最佳化",
+            },
+          },
+          {
+            category: "File Formats",
+            skills: ["DEF", "LEF", "Verilog"],
+            description: {
+              en: "Working with industry-standard EDA file formats",
+              zh: "使用業界標準的 EDA 檔案格式",
+            },
+          },
+          {
+            category: "Algorithms & Methods",
+            skills: ["BFS", "Graph Algorithms", "Placement Algorithms", "Optimization Algorithms"],
+            description: {
+              en: "Implementing and modifying algorithms for EDA problems",
+              zh: "實作和修改用於 EDA 問題的演算法",
+            },
+          },
+        ],
+      },
+      zh: {
+        title: "EDA (電子設計自動化)",
+        description:
+          "用於 VLSI 設計最佳化的電子設計自動化工具與方法。我在 CAD Contest 研究專案中使用過這些技術，並持續學習和提升技能。",
+        items: [
+          {
+            category: "設計最佳化",
+            skills: ["Floorplanning", "Legalization", "Banking/Debanking", "功耗最佳化", "時序最佳化"],
+            description: {
+              en: "Optimizing VLSI designs for power, timing, and area constraints",
+              zh: "針對功耗、時序和面積限制進行 VLSI 設計最佳化",
+            },
+          },
+          {
+            category: "檔案格式",
+            skills: ["DEF", "LEF", "Verilog"],
+            description: {
+              en: "Working with industry-standard EDA file formats",
+              zh: "使用業界標準的 EDA 檔案格式",
+            },
+          },
+          {
+            category: "演算法與方法",
+            skills: ["BFS", "圖形演算法", "擺放演算法", "最佳化演算法"],
+            description: {
+              en: "Implementing and modifying algorithms for EDA problems",
+              zh: "實作和修改用於 EDA 問題的演算法",
+            },
+          },
+        ],
+      },
+    },
   };
 
   const webSkills = skills.webProgramming[lang];
+  const edaSkills = skills.eda[lang];
   const programmingLangs = skills.programmingLanguages[lang];
   const tools = skills.toolsFrameworks[lang];
 
@@ -244,43 +315,81 @@ export default function Skills() {
                 </div>
               ))}
             </div>
-          </div>
 
-          {/* Programming Languages */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              {t.programmingLanguages}
-            </h2>
-            <div className="bg-gray-50 rounded-lg p-6">
-              <div className="flex flex-wrap gap-2">
-                {programmingLangs.map((lang, index) => (
-                  <span
-                    key={index}
-                    className="px-4 py-2 bg-gray-700 text-white text-sm rounded-lg font-medium"
-                  >
-                    {lang}
-                  </span>
-                ))}
+            {/* Programming Languages */}
+            <div className="mt-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                {t.programmingLanguages}
+              </h2>
+              <div className="bg-gray-50 rounded-lg p-6">
+                <div className="flex flex-wrap gap-2">
+                  {programmingLangs.map((lang, index) => (
+                    <span
+                      key={index}
+                      className="px-4 py-2 bg-gray-700 text-white text-sm rounded-lg font-medium"
+                    >
+                      {lang}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Tools & Frameworks */}
+            <div className="mt-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                {t.toolsFrameworks}
+              </h2>
+              <div className="bg-gray-50 rounded-lg p-6">
+                <div className="flex flex-wrap gap-2">
+                  {tools.map((tool, index) => (
+                    <span
+                      key={index}
+                      className="px-4 py-2 bg-gray-700 text-white text-sm rounded-lg font-medium"
+                    >
+                      {tool}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Tools & Frameworks */}
+          {/* EDA - Main Section */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              {t.toolsFrameworks}
-            </h2>
-            <div className="bg-gray-50 rounded-lg p-6">
-              <div className="flex flex-wrap gap-2">
-                {tools.map((tool, index) => (
-                  <span
-                    key={index}
-                    className="px-4 py-2 bg-gray-700 text-white text-sm rounded-lg font-medium"
-                  >
-                    {tool}
-                  </span>
-                ))}
-              </div>
+            <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-8 mb-6">
+              <h2 className="text-3xl font-bold text-gray-900 mb-3">
+                {edaSkills.title}
+              </h2>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                {edaSkills.description}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {edaSkills.items.map((item, index) => (
+                <div
+                  key={index}
+                  className="bg-white border-2 border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow flex flex-col"
+                >
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    {item.category}
+                  </h3>
+                  <p className="text-gray-600 mb-4 text-sm flex-grow">
+                    {item.description[lang]}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-auto">
+                    {item.skills.map((skill, skillIndex) => (
+                      <span
+                        key={skillIndex}
+                        className="px-3 py-1 bg-purple-600 text-white text-sm rounded-full font-medium"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

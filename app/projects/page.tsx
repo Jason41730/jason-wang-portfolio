@@ -10,13 +10,21 @@ export default function Projects() {
   const content = {
     en: {
       heading: "Projects",
-      description: "Here are some of my recent projects.",
+      description: "Here are some of my recent projects, including ",
+      webProgramming: "web programming",
+      and: " and ",
+      cadContest: "EDA CAD Contest",
+      descriptionEnd: ".",
       webProjectsTitle: "Web Programming Projects",
       cadContestTitle: "CAD Contest Problem B - Excellent Award",
     },
     zh: {
       heading: "專案",
-      description: "以下是我的一些近期專案。",
+      description: "以下是我的一些近期專案，包括 ",
+      webProgramming: "網頁程式設計",
+      and: " 和 ",
+      cadContest: "EDA CAD Contest",
+      descriptionEnd: "。",
       webProjectsTitle: "網頁程式設計專案",
       cadContestTitle: "CAD Contest Problem B - 優等獎",
     },
@@ -151,10 +159,38 @@ export default function Projects() {
           </h1>
           <p className="text-lg text-gray-700 text-center leading-relaxed mb-12">
             {t.description}
+            <a
+              href="#web-projects"
+              className="text-blue-600 hover:text-blue-800 underline font-medium"
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.getElementById("web-projects");
+                if (element) {
+                  element.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+              }}
+            >
+              {t.webProgramming}
+            </a>
+            {t.and}
+            <a
+              href="#cad-contest"
+              className="text-blue-600 hover:text-blue-800 underline font-medium"
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.getElementById("cad-contest");
+                if (element) {
+                  element.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+              }}
+            >
+              {t.cadContest}
+            </a>
+            {t.descriptionEnd}
           </p>
 
           {/* Web Programming Projects */}
-          <div className="mb-16">
+          <div id="web-projects" className="mb-16 scroll-mt-20">
             <h2 className="text-3xl font-bold text-gray-900 mb-8">
               {t.webProjectsTitle}
             </h2>
@@ -235,7 +271,7 @@ export default function Projects() {
           </div>
 
           {/* CAD Contest Project */}
-          <div className="p-8 bg-gray-50 rounded-lg border-l-4 border-blue-500 shadow-md">
+          <div id="cad-contest" className="p-8 bg-gray-50 rounded-lg border-l-4 border-blue-500 shadow-md scroll-mt-20">
             <div className="mb-4">
               <h2 className="text-3xl font-bold text-gray-900 mb-2">
                 {t.cadContestTitle}
