@@ -1,38 +1,163 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useLanguage } from "@/components/LanguageProvider";
+import Image from "next/image";
+
+interface Photo {
+  id: string;
+  url: string;
+  width: number;
+  height: number;
+  format: string;
+  createdAt: string;
+}
 
 export default function Photos() {
   const { lang } = useLanguage();
+  const [photos, setPhotos] = useState<Photo[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
 
   const content = {
     en: {
       heading: "Photos",
       description: "A collection of my photography work.",
+      loading: "Loading photos...",
+      noPhotos: "No photos yet. Check back soon!",
     },
     zh: {
       heading: "照片",
       description: "我的攝影作品集。",
+      loading: "載入照片中...",
+      noPhotos: "還沒有照片。敬請期待！",
     },
   };
 
   const t = content[lang];
 
+  useEffect(() => {
+    fetchPhotos();
+  }, []);
+
+  const fetchPhotos = async () => {
+    try {
+      const response = await fetch("/api/photos");
+      const data = await response.json();
+      if (data.photos) {
+        console.log("Fetched photos:", data.photos.length, "photos");
+        if (data.photos.length > 0) {
+          console.log("First photo URL:", data.photos[0].url);
+        }
+        setPhotos(data.photos);
+      }
+    } catch (error) {
+      console.error("Error fetching photos:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const openModal = (photo: Photo) => {
+    setSelectedPhoto(photo);
+  };
+
+  const closeModal = () => {
+    setSelectedPhoto(null);
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <section className="py-16 md:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-8">
-            {t.heading}
-          </h1>
-          <p className="text-lg text-gray-700 text-center leading-relaxed">
-            {t.description}
-          </p>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-8">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              {t.heading}
+            </h1>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              {t.description}
+            </p>
+          </div>
+
+          {loading ? (
+            <div className="text-center py-12">
+              <p className="text-gray-600">{t.loading}</p>
+            </div>
+          ) : photos.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-gray-600">{t.noPhotos}</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {photos.map((photo) => (
+                <div
+                  key={photo.id}
+                  className="relative aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer group bg-gray-100"
+                  onClick={() => openModal(photo)}
+                >
+                  <Image
+                    src={photo.url}
+                    alt={`Photo ${photo.id}`}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    unoptimized
+                    onError={(e) => {
+                      console.error("Image load error:", photo.url);
+                      (e.target as HTMLImageElement).style.display = 'none';
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-opacity" />
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Modal for full-size image */}
+          {selectedPhoto && (
+            <div
+              className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4"
+              onClick={closeModal}
+            >
+              <div
+                className="relative max-w-7xl max-h-full"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  onClick={closeModal}
+                  className="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 transition-opacity z-10"
+                  aria-label="Close"
+                >
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+                <div className="relative w-full h-full max-h-[90vh]">
+                  <Image
+                    src={selectedPhoto.url}
+                    alt={`Photo ${selectedPhoto.id}`}
+                    width={selectedPhoto.width}
+                    height={selectedPhoto.height}
+                    className="object-contain max-h-[90vh] w-auto"
+                    style={{ maxWidth: "100%" }}
+                    unoptimized
+                  />
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </section>
     </div>
   );
 }
-
-
-
