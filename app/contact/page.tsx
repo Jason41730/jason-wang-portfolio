@@ -21,6 +21,7 @@ export default function Contact() {
     en: {
       heading: "Contact",
       description: "Get in touch with me. I'd love to hear from you!",
+      emailNote: "Your message will be sent to jason41730@gmail.com",
       name: "Name",
       namePlaceholder: "Your name",
       email: "Email",
@@ -39,6 +40,7 @@ export default function Contact() {
     zh: {
       heading: "聯絡",
       description: "與我聯繫。我很樂意聽到您的消息！",
+      emailNote: "您的訊息將會寄送到 jason41730@gmail.com",
       name: "姓名",
       namePlaceholder: "您的姓名",
       email: "電子郵件",
@@ -126,8 +128,11 @@ export default function Contact() {
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-4">
             {t.heading}
           </h1>
-          <p className="text-lg text-gray-700 text-center leading-relaxed mb-12">
+          <p className="text-lg text-gray-700 text-center leading-relaxed mb-4">
             {t.description}
+          </p>
+          <p className="text-sm text-gray-600 text-center mb-12">
+            {t.emailNote}
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-6">

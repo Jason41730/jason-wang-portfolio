@@ -105,6 +105,14 @@ export default function About() {
               >
                 GitHub
               </a>
+              {lang === "en" ? ". Feel free to reach out via " : "。歡迎透過 "}
+              <a
+                href="/contact"
+                className="text-blue-600 hover:text-blue-800 underline font-medium"
+              >
+                {lang === "en" ? "contact" : "聯絡"}
+              </a>
+              {lang === "zh" ? " 與我聯繫。" : "."}
             </p>
           </div>
         </div>

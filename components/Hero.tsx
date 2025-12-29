@@ -58,9 +58,17 @@ export default function Hero({ lang }: HeroProps) {
         </h1>
 
         {/* Profession */}
-        <p className="text-xl md:text-2xl lg:text-3xl text-white font-light">
+        <p className="text-xl md:text-2xl lg:text-3xl text-white font-light mb-4">
           {t.profession}
         </p>
+        
+        {/* Email */}
+        <a
+          href="mailto:jason41730@gmail.com"
+          className="text-lg md:text-xl text-white/90 hover:text-white underline transition-colors"
+        >
+          jason41730@gmail.com
+        </a>
       </div>
     </section>
   );

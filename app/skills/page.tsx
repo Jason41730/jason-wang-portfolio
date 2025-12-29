@@ -7,7 +7,7 @@ export default function Skills() {
 
   const content = {
     en: {
-      heading: "Technologies & Learning",
+      heading: "Skills",
       description: "Technologies and tools I've used and am currently learning.",
       webProgramming: "Web Programming",
       webProgrammingDesc:
@@ -23,7 +23,7 @@ export default function Skills() {
       other: "Other Skills",
     },
     zh: {
-      heading: "技術與學習",
+      heading: "技能",
       description: "我使用過且正在學習的技術和工具。",
       webProgramming: "網頁程式設計",
       webProgrammingDesc:
