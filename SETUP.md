@@ -100,3 +100,4 @@ ADMIN_PASSWORD=your_secure_password
 - API Keys 和 Secrets 都是敏感資訊，請妥善保管
 - 如果使用免費方案，可能有限制（例如：Resend 免費方案每天有發送數量限制）
 
+
