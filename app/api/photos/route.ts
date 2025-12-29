@@ -17,7 +17,6 @@ export async function GET(request: NextRequest) {
     try {
       result = await cloudinary.search
         .expression("folder:portfolio-photos")
-        .sort_by([{ created_at: "desc" }])
         .max_results(500)
         .execute();
     } catch (searchError: any) {
@@ -30,14 +29,21 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    const photos = (result.resources || []).map((resource: any) => ({
-      id: resource.public_id,
-      url: resource.secure_url,
-      width: resource.width,
-      height: resource.height,
-      format: resource.format,
-      createdAt: resource.created_at,
-    }));
+    const photos = (result.resources || [])
+      .map((resource: any) => ({
+        id: resource.public_id,
+        url: resource.secure_url,
+        width: resource.width,
+        height: resource.height,
+        format: resource.format,
+        createdAt: resource.created_at,
+      }))
+      .sort((a: any, b: any) => {
+        // Sort by created_at descending (newest first)
+        const dateA = new Date(a.createdAt).getTime();
+        const dateB = new Date(b.createdAt).getTime();
+        return dateB - dateA;
+      });
 
     console.log(`Fetched ${photos.length} photos from Cloudinary`);
     return NextResponse.json({ photos });
