@@ -141,10 +141,10 @@ export default function Projects() {
       subtitle: "Next.js + TypeScript + Tailwind CSS 個人作品集",
       subtitleEn: "Next.js + TypeScript + Tailwind CSS Personal Portfolio",
       description:
-        "一個使用 Next.js、TypeScript 和 Tailwind CSS 構建的現代化個人作品集網站，展示專案、技能、學術背景和興趣。支援中英文雙語切換、響應式設計、優雅的 UI/UX 設計，並整合多個專案的詳細介紹頁面。",
+        "一個使用 Next.js、TypeScript 和 Tailwind CSS 構建的現代化個人作品集網站，展示專案、技能、學術背景和興趣。支援中英文雙語切換、響應式設計、優雅的 UI/UX 設計，並整合多個專案的詳細介紹頁面。網站整合了 Resend API 實現聯絡表單的郵件發送功能，使用 Cloudinary 進行照片儲存和管理。",
       descriptionEn:
-        "A modern personal portfolio website built with Next.js, TypeScript, and Tailwind CSS, showcasing projects, skills, academic background, and interests. Features bilingual support (English/Chinese), responsive design, elegant UI/UX, and integrated detailed project pages.",
-      tech: ["Next.js", "TypeScript", "Tailwind CSS", "React", "App Router"],
+        "A modern personal portfolio website built with Next.js, TypeScript, and Tailwind CSS, showcasing projects, skills, academic background, and interests. Features bilingual support (English/Chinese), responsive design, elegant UI/UX, and integrated detailed project pages. The site includes a contact form integrated with Resend API for email delivery and a photo gallery powered by Cloudinary for image storage and management.",
+      tech: ["Next.js", "TypeScript", "Tailwind CSS", "React", "App Router", "Resend API", "Cloudinary"],
       image: "/images/portfolio-dashboard.png",
       demo: "https://jason-wang-portfolio.vercel.app/",
     },
