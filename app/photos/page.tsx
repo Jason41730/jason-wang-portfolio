@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { useLanguage } from "@/components/LanguageProvider";
-import Image from "next/image";
 
 interface Photo {
   id: string;
@@ -22,13 +21,13 @@ export default function Photos() {
   const content = {
     en: {
       heading: "Photos",
-      description: "A collection of my photography work.",
+      description: "A collection of my personal life photos.",
       loading: "Loading photos...",
       noPhotos: "No photos yet. Check back soon!",
     },
     zh: {
       heading: "照片",
-      description: "我的攝影作品集。",
+      description: "我的個人生活照。",
       loading: "載入照片中...",
       noPhotos: "還沒有照片。敬請期待！",
     },
@@ -47,7 +46,16 @@ export default function Photos() {
       if (data.photos) {
         console.log("Fetched photos:", data.photos.length, "photos");
         if (data.photos.length > 0) {
+          console.log("First photo data:", data.photos[0]);
           console.log("First photo URL:", data.photos[0].url);
+          // Test if URL is accessible
+          fetch(data.photos[0].url, { method: 'HEAD' })
+            .then(res => {
+              console.log("Image URL accessibility test:", res.status, res.ok ? "OK" : "FAILED");
+            })
+            .catch(err => {
+              console.error("Image URL test error:", err);
+            });
         }
         setPhotos(data.photos);
       }
@@ -92,22 +100,29 @@ export default function Photos() {
               {photos.map((photo) => (
                 <div
                   key={photo.id}
-                  className="relative aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer group bg-gray-100"
+                  className="relative aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer group"
                   onClick={() => openModal(photo)}
+                  style={{ backgroundColor: '#f3f4f6' }}
                 >
-                  <Image
+                  <img
                     src={photo.url}
                     alt={`Photo ${photo.id}`}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    unoptimized
-                    onError={(e) => {
-                      console.error("Image load error:", photo.url);
-                      (e.target as HTMLImageElement).style.display = 'none';
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    onLoad={(e) => {
+                      console.log("Image loaded successfully:", photo.url, e.target);
                     }}
+                    onError={(e) => {
+                      console.error("Image load error for URL:", photo.url);
+                      console.error("Error event:", e);
+                      const img = e.target as HTMLImageElement;
+                      img.style.display = 'none';
+                    }}
+                    loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-opacity" />
+                  {/* Hover overlay - transparent by default, darkens on hover */}
+                  <div 
+                    className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none" 
+                  />
                 </div>
               ))}
             </div>
@@ -143,14 +158,11 @@ export default function Photos() {
                   </svg>
                 </button>
                 <div className="relative w-full h-full max-h-[90vh]">
-                  <Image
+                  <img
                     src={selectedPhoto.url}
                     alt={`Photo ${selectedPhoto.id}`}
-                    width={selectedPhoto.width}
-                    height={selectedPhoto.height}
-                    className="object-contain max-h-[90vh] w-auto"
+                    className="object-contain max-h-[90vh] w-auto mx-auto"
                     style={{ maxWidth: "100%" }}
-                    unoptimized
                   />
                 </div>
               </div>

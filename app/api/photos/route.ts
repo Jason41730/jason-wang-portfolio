@@ -30,14 +30,27 @@ export async function GET(request: NextRequest) {
     }
 
     const photos = (result.resources || [])
-      .map((resource: any) => ({
-        id: resource.public_id,
-        url: resource.secure_url,
-        width: resource.width,
-        height: resource.height,
-        format: resource.format,
-        createdAt: resource.created_at,
-      }))
+      .map((resource: any) => {
+        // Use Cloudinary URL helper to generate correct URL
+        let url = resource.secure_url || resource.url;
+        
+        // If URL doesn't exist or is invalid, generate it using Cloudinary helper
+        if (!url || !url.startsWith('http')) {
+          url = cloudinary.url(resource.public_id, {
+            secure: true,
+            format: resource.format || 'auto',
+          });
+        }
+        
+        return {
+          id: resource.public_id,
+          url: url,
+          width: resource.width,
+          height: resource.height,
+          format: resource.format,
+          createdAt: resource.created_at,
+        };
+      })
       .sort((a: any, b: any) => {
         // Sort by created_at descending (newest first)
         const dateA = new Date(a.createdAt).getTime();
@@ -46,6 +59,9 @@ export async function GET(request: NextRequest) {
       });
 
     console.log(`Fetched ${photos.length} photos from Cloudinary`);
+    if (photos.length > 0) {
+      console.log("Sample photo URL:", photos[0].url);
+    }
     return NextResponse.json({ photos });
   } catch (error: any) {
     console.error("Error fetching photos:", error);
