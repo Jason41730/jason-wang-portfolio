@@ -100,9 +100,13 @@ export default function Contact() {
           message: "",
         });
       } else {
+        // Ensure error message is always a string
+        const errorMessage = typeof data.error === 'string' 
+          ? data.error 
+          : data.error?.message || JSON.stringify(data.error) || t.error;
         setSubmitStatus({
           type: "error",
-          message: data.error || t.error,
+          message: errorMessage,
         });
       }
     } catch (error) {
