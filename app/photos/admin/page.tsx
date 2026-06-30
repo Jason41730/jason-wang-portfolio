@@ -43,6 +43,7 @@ export default function PhotosAdmin() {
       dragDrop: "Drag and drop images here, or click to select",
       selectFiles: "Select Files",
       uploading: "Uploading...",
+      loadPhotosError: "Failed to load photos.",
       uploadSuccess: "Upload successful!",
       backToPhotos: "Back to Photos",
       logout: "Logout",
@@ -56,6 +57,7 @@ export default function PhotosAdmin() {
       dragDrop: "拖放圖片到此處，或點擊選擇",
       selectFiles: "選擇檔案",
       uploading: "上傳中...",
+      loadPhotosError: "照片載入失敗。",
       uploadSuccess: "上傳成功！",
       backToPhotos: "返回照片",
       logout: "登出",
@@ -73,8 +75,8 @@ export default function PhotosAdmin() {
       if (data.photos) {
         setAllPhotos(data.photos);
       }
-    } catch (error) {
-      console.error("Error fetching photos:", error);
+    } catch {
+      setError(t.loadPhotosError);
     } finally {
       setLoadingPhotos(false);
     }
@@ -108,17 +110,15 @@ export default function PhotosAdmin() {
       } else {
         setError(data.error || "Invalid password");
       }
-    } catch (error) {
+    } catch {
       setError("Login failed. Please try again.");
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await fetch("/api/auth/logout", { method: "POST" }).catch(() => undefined);
     setIsAuthenticated(false);
     setUploadResults([]);
-    // Clear cookie by setting it to expire
-    document.cookie =
-      "admin_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   };
 
   const handleFileSelect = async (files: FileList | null) => {
@@ -149,7 +149,7 @@ export default function PhotosAdmin() {
         } else {
           setError(data.error || `Failed to upload ${file.name}`);
         }
-      } catch (error) {
+      } catch {
         setError(`Failed to upload ${file.name}`);
       }
     }
@@ -346,4 +346,3 @@ export default function PhotosAdmin() {
     </div>
   );
 }
-

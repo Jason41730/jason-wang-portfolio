@@ -55,10 +55,13 @@
 在 `.env` 檔案中添加：
 ```
 ADMIN_PASSWORD=你的管理員密碼
+# 可選：若未設定，系統會使用 ADMIN_PASSWORD 簽署 session
+ADMIN_SESSION_SECRET=你的_session_secret
 ```
 
 ### 用途：
 - 用於 `/photos/admin` 頁面的身份驗證
+- 用於簽署管理員登入 cookie
 
 ---
 
@@ -77,6 +80,7 @@ RESEND_FROM_EMAIL=onboarding@resend.dev
 
 # Admin
 ADMIN_PASSWORD=your_secure_password
+ADMIN_SESSION_SECRET=your_session_secret
 ```
 
 ---

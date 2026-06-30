@@ -1,30 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
-import { v2 as cloudinary } from "cloudinary";
+import { getCloudinary } from "../../_lib/cloudinary";
+import { verifyAdminSessionToken } from "../../_lib/session";
 
-// Configure Cloudinary
-// Support both CLOUDINARY_CLOUD_NAME and NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
-const cloudName = process.env.CLOUDINARY_CLOUD_NAME || process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
-const apiKey = process.env.CLOUDINARY_API_KEY;
-const apiSecret = process.env.CLOUDINARY_API_SECRET;
+export const runtime = "nodejs";
 
-if (!cloudName || !apiKey || !apiSecret) {
-  console.error("Cloudinary configuration missing:", {
-    cloudName: !!cloudName,
-    apiKey: !!apiKey,
-    apiSecret: !!apiSecret,
-  });
+interface UploadResult {
+  secure_url: string;
+  public_id: string;
+  width: number;
+  height: number;
 }
 
-cloudinary.config({
-  cloud_name: cloudName,
-  api_key: apiKey,
-  api_secret: apiSecret,
-});
-
-// Verify admin authentication
 function verifyAuth(request: NextRequest): boolean {
   const token = request.cookies.get("admin_token");
-  return !!token?.value;
+  return verifyAdminSessionToken(token?.value);
 }
 
 export async function POST(request: NextRequest) {
@@ -64,7 +53,8 @@ export async function POST(request: NextRequest) {
     const buffer = Buffer.from(bytes);
 
     // Upload to Cloudinary
-    const uploadResult = await new Promise((resolve, reject) => {
+    const cloudinary = getCloudinary();
+    const uploadResult = await new Promise<UploadResult>((resolve, reject) => {
       cloudinary.uploader
         .upload_stream(
           {
@@ -72,8 +62,22 @@ export async function POST(request: NextRequest) {
             resource_type: "image",
           },
           (error, result) => {
-            if (error) reject(error);
-            else resolve(result);
+            if (error) {
+              reject(error);
+              return;
+            }
+
+            if (!result) {
+              reject(new Error("Cloudinary did not return an upload result"));
+              return;
+            }
+
+            resolve({
+              secure_url: result.secure_url,
+              public_id: result.public_id,
+              width: result.width,
+              height: result.height,
+            });
           }
         )
         .end(buffer);
@@ -81,17 +85,15 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      url: (uploadResult as any).secure_url,
-      publicId: (uploadResult as any).public_id,
-      width: (uploadResult as any).width,
-      height: (uploadResult as any).height,
+      url: uploadResult.secure_url,
+      publicId: uploadResult.public_id,
+      width: uploadResult.width,
+      height: uploadResult.height,
     });
-  } catch (error: any) {
-    console.error("Upload error:", error);
+  } catch (error) {
     return NextResponse.json(
-      { error: error.message || "Upload failed" },
+      { error: error instanceof Error ? error.message : "Upload failed" },
       { status: 500 }
     );
   }
 }
-

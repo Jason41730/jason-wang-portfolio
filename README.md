@@ -65,7 +65,8 @@ jason-wang-portfolio/
 - `yarn dev` - Start development server
 - `yarn build` - Build for production
 - `yarn start` - Start production server
-- `yarn lint` - Run ESLint
+- `yarn typecheck` - Run TypeScript checks
+- `yarn lint` - Run TypeScript checks
 
 ## License
 

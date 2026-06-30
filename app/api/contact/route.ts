@@ -1,24 +1,40 @@
-import { Resend } from "resend";
+import { getEnv } from "../_lib/env";
+import { getResend } from "../_lib/resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+export const runtime = "nodejs";
+
+function toTrimmedString(value: unknown): string {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function isValidEmail(email: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function formatSender(email: string): string {
+  return email.includes("<") ? email : `Portfolio <${email}>`;
+}
+
+function getErrorMessage(error: unknown): string {
+  if (typeof error === "object" && error && "message" in error) {
+    return String(error.message);
+  }
+
+  if (typeof error === "string") {
+    return error;
+  }
+
+  return "Failed to send email";
+}
 
 export async function POST(req: Request) {
   try {
-    // Check Resend API key
-    console.log("RESEND_API_KEY exists?", !!process.env.RESEND_API_KEY);
-    
-    if (!process.env.RESEND_API_KEY) {
-      console.error("RESEND_API_KEY is not configured");
-      return Response.json(
-        { error: "Email service not configured" },
-        { status: 500 }
-      );
-    }
-
     const body = await req.json();
-    const { name, email, subject, message } = body;
+    const name = toTrimmedString(body.name);
+    const email = toTrimmedString(body.email);
+    const subject = toTrimmedString(body.subject);
+    const message = toTrimmedString(body.message);
 
-    // Validate required fields
     if (!name || !email || !subject || !message) {
       return Response.json(
         { error: "All fields are required" },
@@ -26,28 +42,30 @@ export async function POST(req: Request) {
       );
     }
 
-    // Get email configuration from environment variables
-    // Support both CONTACT_EMAIL and RESEND_TO_EMAIL variable names
-    // Convert to lowercase to match Resend's requirements
-    const toEmail = (process.env.CONTACT_EMAIL || process.env.RESEND_TO_EMAIL)?.toLowerCase();
+    if (!isValidEmail(email)) {
+      return Response.json(
+        { error: "Please enter a valid email address" },
+        { status: 400 }
+      );
+    }
+
+    const toEmail = (getEnv("CONTACT_EMAIL") ?? getEnv("RESEND_TO_EMAIL"))
+      ?.toLowerCase();
 
     if (!toEmail) {
-      console.error("Contact email not configured");
       return Response.json(
         { error: "Contact email not configured" },
         { status: 500 }
       );
     }
 
-    console.log("Sending email to:", toEmail);
+    const fromEmail = getEnv("RESEND_FROM_EMAIL") ?? "onboarding@resend.dev";
 
-    // Send email using Resend
-    // from must use verified domain format: "Name <email@domain.com>"
-    const { data, error } = await resend.emails.send({
-      from: "Portfolio <onboarding@resend.dev>",
+    const { error } = await getResend().emails.send({
+      from: formatSender(fromEmail),
       to: [toEmail],
-      subject: subject || "New message from contact form",
-      replyTo: email, // User's email goes here
+      subject,
+      replyTo: email,
       text: `
 Name: ${name}
 Email: ${email}
@@ -58,27 +76,11 @@ ${message}
     });
 
     if (error) {
-      console.error("Resend error:", error);
-      // Convert error object to string message
-      // Resend errors often have a message property
-      let errorMessage = "Failed to send email";
-      if (typeof error === 'object' && error !== null) {
-        if ('message' in error) {
-          errorMessage = String(error.message);
-        } else {
-          errorMessage = JSON.stringify(error);
-        }
-      } else if (typeof error === 'string') {
-        errorMessage = error;
-      }
-      
-      return Response.json({ error: errorMessage }, { status: 500 });
+      return Response.json({ error: getErrorMessage(error) }, { status: 500 });
     }
 
-    return Response.json({ success: true, data });
-  } catch (err) {
-    console.error("API /contact error:", err);
+    return Response.json({ success: true });
+  } catch {
     return Response.json({ error: "Internal server error" }, { status: 500 });
   }
 }
-

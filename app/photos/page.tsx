@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useLanguage } from "@/components/LanguageProvider";
 
@@ -16,6 +17,7 @@ export default function Photos() {
   const { lang } = useLanguage();
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
 
   const content = {
@@ -24,47 +26,54 @@ export default function Photos() {
       description: "A collection of my personal life photos.",
       loading: "Loading photos...",
       noPhotos: "No photos yet. Check back soon!",
+      loadError: "Unable to load photos right now. Please try again later.",
     },
     zh: {
       heading: "照片",
       description: "我的個人生活照。",
       loading: "載入照片中...",
       noPhotos: "還沒有照片。敬請期待！",
+      loadError: "目前無法載入照片，請稍後再試。",
     },
   };
 
   const t = content[lang];
 
   useEffect(() => {
-    fetchPhotos();
-  }, []);
+    const controller = new AbortController();
 
-  const fetchPhotos = async () => {
-    try {
-      const response = await fetch("/api/photos");
-      const data = await response.json();
-      if (data.photos) {
-        console.log("Fetched photos:", data.photos.length, "photos");
-        if (data.photos.length > 0) {
-          console.log("First photo data:", data.photos[0]);
-          console.log("First photo URL:", data.photos[0].url);
-          // Test if URL is accessible
-          fetch(data.photos[0].url, { method: 'HEAD' })
-            .then(res => {
-              console.log("Image URL accessibility test:", res.status, res.ok ? "OK" : "FAILED");
-            })
-            .catch(err => {
-              console.error("Image URL test error:", err);
-            });
+    async function fetchPhotos() {
+      try {
+        setLoading(true);
+        setLoadError("");
+        const response = await fetch("/api/photos", {
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch photos");
         }
-        setPhotos(data.photos);
+
+        const data = (await response.json()) as { photos?: Photo[] };
+        setPhotos(Array.isArray(data.photos) ? data.photos : []);
+      } catch {
+        if (controller.signal.aborted) {
+          return;
+        }
+
+        setLoadError(t.loadError);
+        setPhotos([]);
+      } finally {
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
       }
-    } catch (error) {
-      console.error("Error fetching photos:", error);
-    } finally {
-      setLoading(false);
     }
-  };
+
+    fetchPhotos();
+
+    return () => controller.abort();
+  }, [t.loadError]);
 
   const openModal = (photo: Photo) => {
     setSelectedPhoto(photo);
@@ -91,6 +100,10 @@ export default function Photos() {
             <div className="text-center py-12">
               <p className="text-gray-600">{t.loading}</p>
             </div>
+          ) : loadError ? (
+            <div className="text-center py-12">
+              <p className="text-red-600">{loadError}</p>
+            </div>
           ) : photos.length === 0 ? (
             <div className="text-center py-12">
               <p className="text-gray-600">{t.noPhotos}</p>
@@ -98,32 +111,23 @@ export default function Photos() {
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {photos.map((photo) => (
-                <div
+                <button
                   key={photo.id}
-                  className="relative aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer group"
+                  type="button"
+                  className="relative aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer group bg-gray-100"
                   onClick={() => openModal(photo)}
-                  style={{ backgroundColor: '#f3f4f6' }}
                 >
-                  <img
+                  <Image
                     src={photo.url}
                     alt={`Photo ${photo.id}`}
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    onLoad={(e) => {
-                      console.log("Image loaded successfully:", photo.url, e.target);
-                    }}
-                    onError={(e) => {
-                      console.error("Image load error for URL:", photo.url);
-                      console.error("Error event:", e);
-                      const img = e.target as HTMLImageElement;
-                      img.style.display = 'none';
-                    }}
-                    loading="lazy"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                   />
-                  {/* Hover overlay - transparent by default, darkens on hover */}
-                  <div 
-                    className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none" 
+                  <div
+                    className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none"
                   />
-                </div>
+                </button>
               ))}
             </div>
           )}
@@ -158,11 +162,14 @@ export default function Photos() {
                   </svg>
                 </button>
                 <div className="relative w-full h-full max-h-[90vh]">
-                  <img
+                  <Image
                     src={selectedPhoto.url}
                     alt={`Photo ${selectedPhoto.id}`}
-                    className="object-contain max-h-[90vh] w-auto mx-auto"
-                    style={{ maxWidth: "100%" }}
+                    width={selectedPhoto.width || 1600}
+                    height={selectedPhoto.height || 1000}
+                    className="object-contain max-h-[90vh] w-auto max-w-full mx-auto"
+                    sizes="100vw"
+                    priority
                   />
                 </div>
               </div>
