@@ -32,6 +32,9 @@ export default function CADContestProject() {
       backToProjects: "Back to Projects",
       awardLink: "Official Results",
       awardLinkText: "View Official Competition Results",
+      certificateTitle: "Award Certificate",
+      certificateDescription:
+        "Ministry of Education certificate for the 2025 Integrated Circuits Computer Aided Design Contest Award.",
       researchInfo: "Research Information",
       researchTopic: "Research Topic",
       advisor: "Advisor",
@@ -97,6 +100,9 @@ export default function CADContestProject() {
       backToProjects: "返回專案列表",
       awardLink: "官方結果",
       awardLinkText: "查看官方競賽結果",
+      certificateTitle: "獎狀",
+      certificateDescription:
+        "2025 積體電路電腦輔助設計（CAD）軟體製作競賽教育部獎狀。",
       researchInfo: "研究資訊",
       researchTopic: "研究題目",
       advisor: "指導老師",
@@ -188,6 +194,27 @@ export default function CADContestProject() {
                 fill
                 className="object-contain"
               />
+            </div>
+          </div>
+
+          {/* Award Certificate */}
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">
+              {t.certificateTitle}
+            </h2>
+            <p className="text-lg text-gray-700 leading-relaxed mb-4">
+              {t.certificateDescription}
+            </p>
+            <div className="rounded-lg overflow-hidden shadow-lg bg-gray-50 border border-gray-200">
+              <div className="relative w-full aspect-[3500/2521]">
+                <Image
+                  src="/images/cadcerti.JPG"
+                  alt={t.certificateTitle}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 768px"
+                />
+              </div>
             </div>
           </div>
 
@@ -334,6 +361,5 @@ export default function CADContestProject() {
     </div>
   );
 }
-
 
 
