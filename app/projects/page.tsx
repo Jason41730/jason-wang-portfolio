@@ -20,10 +20,10 @@ export default function Projects() {
       description: "Here are some of my recent projects, including ",
       webProgramming: "web programming",
       and: " and ",
-      cadContest: "EDA CAD Contest",
+      cadContest: "2025 EDA CAD Contest",
       descriptionEnd: ".",
       webProjectsTitle: "Web Programming Projects",
-      cadContestTitle: "CAD Contest Problem B - Excellent Award",
+      cadContestTitle: "2025 CAD Contest Problem B - Excellent Award",
       overviewTitle: "Project Areas",
       overviewDescription:
         "Choose an area first, or keep scrolling to browse every project in detail.",
@@ -36,19 +36,19 @@ export default function Projects() {
       singleProjectCount: "project",
       webCategoryDescription:
         "Full-stack products, LINE bots, dashboards, and interactive web apps.",
-      cadCategoryTitle: "EDA / CAD Contest",
+      cadCategoryTitle: "2025 EDA / CAD Contest",
       cadCategoryDescription:
-        "Research-oriented EDA work focused on optimization, algorithms, and contest results.",
+        "Award-winning EDA work from 2025 focused on optimization, algorithms, and contest results.",
     },
     zh: {
       heading: "專案",
       description: "以下是我的一些近期專案，包括 ",
       webProgramming: "網頁程式設計",
       and: " 和 ",
-      cadContest: "EDA CAD Contest",
+      cadContest: "2025 EDA CAD Contest",
       descriptionEnd: "。",
       webProjectsTitle: "網頁程式設計專案",
-      cadContestTitle: "CAD Contest Problem B - 優等獎",
+      cadContestTitle: "2025 CAD Contest Problem B - 優等獎",
       overviewTitle: "專案分類",
       overviewDescription:
         "可以先從分類開始看，也可以繼續往下瀏覽每個專案的詳細介紹。",
@@ -61,9 +61,9 @@ export default function Projects() {
       singleProjectCount: "個專案",
       webCategoryDescription:
         "Full-stack 產品、LINE Bot、Dashboard 與互動式網頁應用。",
-      cadCategoryTitle: "EDA / CAD Contest",
+      cadCategoryTitle: "2025 EDA / CAD Contest",
       cadCategoryDescription:
-        "以最佳化、演算法與競賽成果為核心的 EDA 研究與實作。",
+        "2025 年以最佳化、演算法與競賽成果為核心的 EDA 研究與實作。",
     },
   };
 
@@ -89,14 +89,17 @@ export default function Projects() {
       title: t.cadCategoryTitle,
       description: t.cadCategoryDescription,
       count: 1,
-      image: "/images/cad-award.png",
-      imageAlt: lang === "en" ? "EDA CAD Contest" : "EDA CAD Contest",
-      imageClass: "object-contain p-4",
+      image: "/images/cadcerti.JPG",
+      imageAlt:
+        lang === "en"
+          ? "2025 CAD Contest Award Certificate"
+          : "2025 CAD Contest 獎狀",
+      imageClass: "object-contain p-2",
       accentClass: "border-emerald-500",
       featured:
         lang === "en"
-          ? ["Problem B", "Excellent Award", "EDA Optimization"]
-          : ["Problem B", "優等獎", "EDA 最佳化"],
+          ? ["2025", "Problem B", "Excellent Award"]
+          : ["2025", "Problem B", "優等獎"],
     },
   ];
 
@@ -339,7 +342,7 @@ export default function Projects() {
           <div id="cad-contest" className="p-8 bg-gray-50 border-l-4 border-cyan-600 shadow-sm scroll-mt-20">
             <div className="mb-4">
               <span className="mb-3 inline-block border border-cyan-200 bg-cyan-50 px-2.5 py-1 text-xs font-semibold text-cyan-700">
-                {lang === "en" ? "Research / Award" : "研究 / 競賽獲獎"}
+                {lang === "en" ? "2025 Research / Award" : "2025 研究 / 競賽獲獎"}
               </span>
               <h2 className="text-3xl font-bold text-gray-900 mb-2">
                 {t.cadContestTitle}
@@ -351,8 +354,8 @@ export default function Projects() {
               </p>
               <p className="text-lg font-semibold text-blue-600 mb-1">
                 {lang === "en"
-                  ? "Excellent Award (優等) - Domestic Competition"
-                  : "國內賽優等獎"}
+                  ? "2025 Excellent Award (優等) - Domestic Competition"
+                  : "2025 國內賽優等獎"}
               </p>
               <p className="text-sm text-gray-600">
                 {lang === "en" ? "Group ID: cadb1050" : "組別：cadb1050"}
@@ -360,13 +363,13 @@ export default function Projects() {
             </div>
             <p className="text-gray-700 mb-4 leading-relaxed">
               {lang === "en"
-                ? "I participated in the CAD Contest Problem B competition and achieved Excellent Award (優等) in the domestic competition. This project focused on power and timing optimization using multibit flip-flops."
-                : "我參與了 CAD Contest Problem B 競賽，在國內賽中獲得優等獎。此專案專注於使用多位元正反器進行功耗與時序最佳化。"}
+                ? "I participated in the 2025 CAD Contest Problem B competition and achieved Excellent Award (優等) in the domestic competition. This project focused on power and timing optimization using multibit flip-flops."
+                : "我參與了 2025 CAD Contest Problem B 競賽，在國內賽中獲得優等獎。此專案專注於使用多位元正反器進行功耗與時序最佳化。"}
             </p>
             <div className="mb-5 grid gap-3 md:grid-cols-3">
               {[
                 lang === "en" ? "Role: Algorithm + implementation" : "角色：演算法與實作",
-                lang === "en" ? "Evidence: Beta rank 2" : "證據：Beta ranking 2",
+                lang === "en" ? "Evidence: 2025 Beta rank 2" : "證據：2025 Beta ranking 2",
                 lang === "en" ? "Stack: C++, DEF/LEF, STA" : "技術：C++, DEF/LEF, STA",
               ].map((item) => (
                 <div key={item} className="border border-gray-200 bg-white px-4 py-3 text-sm font-medium text-gray-700">

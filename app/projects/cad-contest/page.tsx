@@ -9,12 +9,12 @@ export default function CADContestProject() {
 
   const content = {
     en: {
-      title: "CAD Contest Problem B",
+      title: "2025 CAD Contest Problem B",
       subtitle: "Power and Timing Optimization Using Multibit Flip-Flop",
-      award: "Excellent Award (優等) - Domestic Competition",
+      award: "2025 Excellent Award (優等) - Domestic Competition",
       group: "Group ID: cadb1050",
       description:
-        "I participated in the CAD Contest Problem B competition and achieved Excellent Award (優等) in the domestic competition. This project focused on power and timing optimization using multibit flip-flops.",
+        "I participated in the 2025 CAD Contest Problem B competition and achieved Excellent Award (優等) in the domestic competition. This project focused on power and timing optimization using multibit flip-flops.",
       caseStudyTitle: "Case Study Snapshot",
       caseStudyItems: [
         {
@@ -27,11 +27,11 @@ export default function CADContestProject() {
         },
         {
           label: "Outcome",
-          text: "Achieved Excellent Award, Beta test rank 2, and final STA reports with setup/hold WNS at 0.",
+          text: "Achieved 2025 Excellent Award, Beta test rank 2, and final STA reports with setup/hold WNS at 0.",
         },
       ],
       metrics: [
-        { label: "Award", value: "Excellent", detail: "Domestic Competition" },
+        { label: "Award", value: "Excellent", detail: "2025 Domestic Competition" },
         { label: "Beta Test", value: "Rank 2", detail: "Score + runtime comparison" },
         { label: "Timing", value: "WNS 0", detail: "Setup and hold after final STA" },
         { label: "Core", value: "C++", detail: "DEF / LEF / Verilog flow" },
@@ -58,8 +58,8 @@ export default function CADContestProject() {
         "Project Planning: Planned 4-month workflows, systematically advanced projects, and continuously adjusted processes, greatly enhancing research and independent thinking abilities",
       ],
       backToProjects: "Back to Projects",
-      awardLink: "Official Results",
-      awardLinkText: "View Official Competition Results",
+      awardLink: "2025 Official Results",
+      awardLinkText: "View 2025 Official Competition Results",
       certificateTitle: "Award Certificate",
       certificateDescription:
         "Ministry of Education certificate for the 2025 Integrated Circuits Computer Aided Design Contest Award.",
@@ -72,11 +72,11 @@ export default function CADContestProject() {
       advisorName: "Prof. Iris Hui-Ru Jiang (江蕙如教授)",
       abstract: "Abstract",
       abstractContent:
-        "This research focuses on CAD Contest Problem B, which aims to reduce the weighted sum of power, timing, and area through banking and debanking of single-bit flip-flops and multi-bit flip-flops (each test case has different coefficients as weights for each parameter). This belongs to optimization problems in EDA.",
+        "This research focuses on 2025 CAD Contest Problem B, which aims to reduce the weighted sum of power, timing, and area through banking and debanking of single-bit flip-flops and multi-bit flip-flops (each test case has different coefficients as weights for each parameter). This belongs to optimization problems in EDA.",
       researchProcess: "Research Process",
       researchProcessContent: [
         "At the beginning of the semester when I joined Prof. Hui-Ru Jiang's lab, I first read multiple research papers related to floorplanning to establish foundational knowledge and accumulate more algorithms.",
-        "After taking the Introduction to EDA course in the same semester, I further explored and began challenging CAD Contest Problem B, focusing my research direction on this topic.",
+        "After taking the Introduction to EDA course in the same semester, I further explored and began challenging 2025 CAD Contest Problem B, focusing my research direction on this topic.",
         "During the research process, I not only studied multiple reference papers provided by CAD Contest officials to understand the direction the competition hoped we would pursue, but also deeply studied legalization papers provided by the professor to maintain good timing while handling overlap issues.",
       ],
       implementation: "Implementation Process",
@@ -108,12 +108,12 @@ export default function CADContestProject() {
       ],
     },
     zh: {
-      title: "CAD Contest Problem B",
+      title: "2025 CAD Contest Problem B",
       subtitle: "使用多位元正反器進行功耗與時序最佳化",
-      award: "國內賽優等獎",
+      award: "2025 國內賽優等獎",
       group: "組別：cadb1050",
       description:
-        "我參與了 CAD Contest Problem B 競賽，在國內賽中獲得優等獎。此專案專注於使用多位元正反器進行功耗與時序最佳化。",
+        "我參與了 2025 CAD Contest Problem B 競賽，在國內賽中獲得優等獎。此專案專注於使用多位元正反器進行功耗與時序最佳化。",
       caseStudyTitle: "Case Study 摘要",
       caseStudyItems: [
         {
@@ -126,11 +126,11 @@ export default function CADContestProject() {
         },
         {
           label: "成果",
-          text: "獲得國內賽優等獎、Beta test ranking 2，final STA 報告中 setup/hold WNS 皆為 0。",
+          text: "獲得 2025 國內賽優等獎、Beta test ranking 2，final STA 報告中 setup/hold WNS 皆為 0。",
         },
       ],
       metrics: [
-        { label: "獎項", value: "優等獎", detail: "國內賽" },
+        { label: "獎項", value: "優等獎", detail: "2025 國內賽" },
         { label: "Beta Test", value: "Rank 2", detail: "分數與 runtime 比較" },
         { label: "Timing", value: "WNS 0", detail: "Final STA setup/hold" },
         { label: "核心", value: "C++", detail: "DEF / LEF / Verilog flow" },
@@ -157,8 +157,8 @@ export default function CADContestProject() {
         "專案規劃：規劃長達4個月的工作流程，系統性推進專案，並在過程中不斷調整我們的流程及專案方向，大大的增強了我們的研究及獨立思考能力",
       ],
       backToProjects: "返回專案列表",
-      awardLink: "官方結果",
-      awardLinkText: "查看官方競賽結果",
+      awardLink: "2025 官方結果",
+      awardLinkText: "查看 2025 官方競賽結果",
       certificateTitle: "獎狀",
       certificateDescription:
         "2025 積體電路電腦輔助設計（CAD）軟體製作競賽教育部獎狀。",
@@ -171,11 +171,11 @@ export default function CADContestProject() {
       advisorName: "江蕙如教授",
       abstract: "摘要",
       abstractContent:
-        "本專題研究聚焦於 CAD Contest Problem B，主題為透過 single-bit flip-flop 與 multi-bit flip-flop 的 banking 與 debanking 來降低 power, timing 及 area 加權後之和（每個測資會有不同係數當作各參數之加權），屬於 EDA 中最佳化的問題。",
+        "本專題研究聚焦於 2025 CAD Contest Problem B，主題為透過 single-bit flip-flop 與 multi-bit flip-flop 的 banking 與 debanking 來降低 power, timing 及 area 加權後之和（每個測資會有不同係數當作各參數之加權），屬於 EDA 中最佳化的問題。",
       researchProcess: "研究歷程",
       researchProcessContent: [
         "在學期初剛進入江蕙如教授的實驗室時，我先閱讀了多篇與 floorplanning 相關的研究論文，建立基礎認識及累積更多的演算法。",
-        "隨後因為同一學期修習了 EDA 導論課程，進一步接觸並著手挑戰 CAD Contest 的 B 題，並將專題方向聚焦於此。",
+        "隨後因為同一學期修習了 EDA 導論課程，進一步接觸並著手挑戰 2025 CAD Contest 的 B 題，並將專題方向聚焦於此。",
         "專題過程中，我不僅研讀了多篇 CAD Contest 官方提供的 reference 論文，掌握大會希望我們努力的方向；亦深入學習了老師提供的 legalization 論文，在處理 overlap 問題時同時維持 timing 在不錯的狀態。",
       ],
       implementation: "實作過程",
@@ -238,7 +238,7 @@ export default function CADContestProject() {
           {/* Project Header */}
           <div className="mb-8 border-l-4 border-cyan-600 bg-gray-50 p-6">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-cyan-700">
-              {lang === "en" ? "Research / Competition" : "研究 / 競賽"}
+              {lang === "en" ? "2025 Research / Competition" : "2025 研究 / 競賽"}
             </p>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">
               {t.title}
@@ -495,4 +495,3 @@ export default function CADContestProject() {
     </div>
   );
 }
-
