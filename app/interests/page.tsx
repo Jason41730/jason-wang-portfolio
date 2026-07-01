@@ -1,88 +1,152 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/components/LanguageProvider";
 
+type Locale = "en" | "zh";
+
 interface Interest {
+  id: string;
   name: string;
   nameEn: string;
   description: string;
   descriptionEn: string;
-  icon: string;
-  color: string;
-  hasLink?: boolean;
+  mark: string;
+  tags: Record<Locale, string[]>;
+  accentClass: string;
+  featured?: boolean;
+  linkHref?: string;
   linkText?: string;
   linkTextEn?: string;
 }
 
 const interests: Interest[] = [
   {
+    id: "baseball",
     name: "棒球",
     nameEn: "Baseball",
-    description: "熱愛棒球運動，參與系棒隊，具備良好的溝通能力和團隊合作精神。關注職棒賽事，享受棒球帶來的熱血與激情。",
-    descriptionEn: "I love baseball and participate in the department baseball team, which has helped me develop strong communication skills and teamwork. I follow professional baseball games and enjoy the passion and excitement that baseball brings.",
-    icon: "⚾",
-    color: "bg-blue-100 text-blue-800",
+    description:
+      "參與系棒隊，也長期關注職棒賽事。棒球讓我練習溝通、節奏感，以及在壓力下做出穩定判斷。",
+    descriptionEn:
+      "I play on the department baseball team and follow professional games. Baseball trains communication, rhythm, and steady decisions under pressure.",
+    mark: "BB",
+    tags: {
+      en: ["Teamwork", "Competition", "Rhythm"],
+      zh: ["團隊合作", "競賽", "節奏感"],
+    },
+    accentClass: "border-l-blue-500",
   },
   {
+    id: "movies",
     name: "電影",
     nameEn: "Movies",
-    description: "喜歡看電影，享受不同類型電影帶來的視覺與情感體驗，從中獲得靈感與啟發。",
-    descriptionEn: "I enjoy watching movies and appreciate the visual and emotional experiences that different genres bring, gaining inspiration and insights from them.",
-    icon: "🎬",
-    color: "bg-purple-100 text-purple-800",
+    description:
+      "喜歡電影裡的敘事、鏡頭與情緒推進。好的故事常常會讓我重新思考產品、介面和人的連結。",
+    descriptionEn:
+      "I enjoy storytelling, cinematography, and emotional pacing. Good films often reshape how I think about products, interfaces, and people.",
+    mark: "MV",
+    tags: {
+      en: ["Stories", "Visuals", "Pacing"],
+      zh: ["敘事", "影像", "節奏"],
+    },
+    accentClass: "border-l-violet-500",
   },
   {
+    id: "sports",
     name: "運動",
     nameEn: "Sports",
-    description: "喜歡各種運動，保持健康的生活方式，享受運動帶來的活力與挑戰。",
-    descriptionEn: "I enjoy various sports and maintain a healthy lifestyle, embracing the energy and challenges that sports bring.",
-    icon: "🏃",
-    color: "bg-green-100 text-green-800",
+    description:
+      "運動是讓生活維持穩定的方式，也讓我保有體力、耐心和面對長期目標的韌性。",
+    descriptionEn:
+      "Sports keep my life grounded and help me maintain energy, patience, and resilience for long-term goals.",
+    mark: "SP",
+    tags: {
+      en: ["Energy", "Discipline", "Health"],
+      zh: ["活力", "紀律", "健康"],
+    },
+    accentClass: "border-l-emerald-500",
   },
   {
+    id: "travel",
     name: "出遊旅行",
     nameEn: "Travel",
-    description: "很愛出去玩，探索不同的地方，體驗不同的文化與風景。",
-    descriptionEn: "I love to travel and explore different places, experiencing diverse cultures and landscapes.",
-    icon: "✈️",
-    color: "bg-yellow-100 text-yellow-800",
+    description:
+      "很喜歡出去走走，探索不同城市、風景和生活方式。旅行照片也慢慢變成我記錄階段變化的方式。",
+    descriptionEn:
+      "I love exploring cities, landscapes, and ways of living. Travel photos have become a way for me to document different seasons of life.",
+    mark: "TR",
+    tags: {
+      en: ["Places", "Photos", "Perspective"],
+      zh: ["地方", "照片", "視角"],
+    },
+    accentClass: "border-l-amber-500",
+    featured: true,
+    linkHref: "/photos",
+    linkText: "查看照片",
+    linkTextEn: "See Photos",
   },
   {
+    id: "volunteer",
     name: "志工服務",
     nameEn: "Volunteer Service",
-    description: "加入慈幼山友社服務隊，寒暑假到花蓮山上陪伴小朋友學習，透過服務他人獲得成就感。",
-    descriptionEn: "I joined the volunteer service team and spend summers and winters in Hualien mountains accompanying children in their learning, gaining fulfillment through helping others.",
-    icon: "❤️",
-    color: "bg-red-100 text-red-800",
+    description:
+      "加入慈幼山友社服務隊，寒暑假到花蓮山上陪伴小朋友學習。服務讓我更珍惜長期陪伴的力量。",
+    descriptionEn:
+      "I joined a volunteer service team and spend summers and winters in the Hualien mountains accompanying children in their learning.",
+    mark: "SV",
+    tags: {
+      en: ["Service", "Education", "Hualien"],
+      zh: ["服務", "教育", "花蓮"],
+    },
+    accentClass: "border-l-rose-500",
   },
   {
+    id: "web-development",
     name: "網頁開發",
     nameEn: "Web Development",
-    description: "進行全端開發，從前端到後端，享受創造美觀且實用的網頁應用程式的完整過程。詳情見",
-    descriptionEn: "I do full-stack development, from frontend to backend, enjoying the complete process of creating beautiful and practical web applications. For details, see",
-    icon: "💻",
-    color: "bg-indigo-100 text-indigo-800",
-    hasLink: true,
-    linkText: "專案",
-    linkTextEn: "Projects",
+    description:
+      "從前端到後端，把想法變成真的能使用的產品。這也是我整理個人作品集與公開筆記的主要工具。",
+    descriptionEn:
+      "I enjoy turning ideas into usable products from frontend to backend. It is also my main tool for this portfolio and public notes.",
+    mark: "WEB",
+    tags: {
+      en: ["Full-stack", "Products", "Interfaces"],
+      zh: ["全端", "產品", "介面"],
+    },
+    accentClass: "border-l-cyan-500",
+    linkHref: "/projects",
+    linkText: "查看專案",
+    linkTextEn: "View Projects",
   },
   {
+    id: "programming",
     name: "程式設計",
     nameEn: "Programming",
-    description: "探索各種程式語言與技術，解決問題並創造創新的解決方案。",
-    descriptionEn: "I explore various programming languages and technologies, solving problems and creating innovative solutions.",
-    icon: "⌨️",
-    color: "bg-teal-100 text-teal-800",
+    description:
+      "喜歡用程式拆解問題，也喜歡把抽象想法變成可以測試、可以迭代的系統。",
+    descriptionEn:
+      "I like using code to break down problems and turn abstract ideas into systems that can be tested and iterated.",
+    mark: "PG",
+    tags: {
+      en: ["Problem solving", "Systems", "Iteration"],
+      zh: ["問題拆解", "系統", "迭代"],
+    },
+    accentClass: "border-l-teal-500",
   },
   {
+    id: "electrical-engineering",
     name: "電子工程",
     nameEn: "Electrical Engineering",
-    description: "對硬體設計與嵌入式系統有濃厚興趣，結合軟硬體知識解決實際問題。",
-    descriptionEn: "I have a strong interest in hardware design and embedded systems, combining software and hardware knowledge to solve practical problems.",
-    icon: "🔌",
-    color: "bg-orange-100 text-orange-800",
+    description:
+      "對硬體設計、EDA/CAD 與邏輯合成有興趣，也期待把軟體工程能力帶進研究工作。",
+    descriptionEn:
+      "I am interested in hardware design, EDA/CAD, and logic synthesis, and I hope to bring software engineering habits into research.",
+    mark: "EE",
+    tags: {
+      en: ["EDA", "Logic synthesis", "Hardware"],
+      zh: ["EDA", "邏輯合成", "硬體"],
+    },
+    accentClass: "border-l-orange-500",
   },
 ];
 
@@ -91,82 +155,143 @@ export default function Interests() {
 
   const content = {
     en: {
+      eyebrow: "Outside engineering",
       heading: "Interests",
-      description: "Things I'm passionate about and enjoy doing in my free time.",
-      photosLink: "Check out my travel photos",
-      photosLinkText: "here",
+      description:
+        "The things that keep me curious, grounded, and connected to people outside the screen.",
+      snapshotTitle: "What This Adds",
+      snapshot: [
+        {
+          label: "Team sense",
+          value: "Baseball and service",
+        },
+        {
+          label: "Observation",
+          value: "Movies and travel",
+        },
+        {
+          label: "Long-term energy",
+          value: "Sports and craft",
+        },
+      ],
     },
     zh: {
+      eyebrow: "工程之外",
       heading: "興趣",
-      description: "我熱衷的事物以及閒暇時喜歡從事的活動。",
-      photosLink: "查看我的出遊照片",
-      photosLinkText: "這裡",
+      description:
+        "這些是讓我保持好奇、穩定，也持續和人產生連結的事情。",
+      snapshotTitle: "它們帶給我的能力",
+      snapshot: [
+        {
+          label: "團隊感",
+          value: "棒球與服務",
+        },
+        {
+          label: "觀察力",
+          value: "電影與旅行",
+        },
+        {
+          label: "長期能量",
+          value: "運動與創作",
+        },
+      ],
     },
   };
 
   const t = content[lang];
 
   return (
-    <div className="min-h-screen bg-white">
-      <section className="py-16 md:py-24">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-4">
-            {t.heading}
-          </h1>
-          <p className="text-lg text-gray-600 text-center mb-12">
-            {t.description}
-          </p>
+    <div className="min-h-screen bg-slate-50">
+      <section className="border-b border-slate-200 bg-white py-16 md:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+            <div>
+              <p className="mb-3 text-sm font-semibold text-cyan-700">
+                {t.eyebrow}
+              </p>
+              <h1 className="text-4xl font-bold text-gray-950 md:text-5xl">
+                {t.heading}
+              </h1>
+              <p className="mt-5 max-w-3xl text-lg leading-8 text-gray-700">
+                {t.description}
+              </p>
+            </div>
 
-          {/* Interests Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {interests.map((interest, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-lg shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 p-6 border border-gray-200 cursor-pointer"
-              >
-                <div className="flex items-start space-x-4">
-                  <div className="text-4xl">{interest.icon}</div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">
-                      {lang === "en" ? interest.nameEn : interest.name}
-                    </h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {lang === "en"
-                        ? interest.descriptionEn
-                        : interest.description}
-                      {interest.hasLink && (
-                        <>
-                          {" "}
-                          <Link
-                            href="/projects"
-                            className="text-blue-600 hover:text-blue-800 underline font-medium"
-                          >
-                            {lang === "en"
-                              ? interest.linkTextEn
-                              : interest.linkText}
-                          </Link>
-                          {lang === "zh" ? "。" : "."}
-                        </>
-                      )}
+            <div className="border border-gray-200 bg-slate-50 p-6">
+              <h2 className="text-xl font-bold text-gray-950">
+                {t.snapshotTitle}
+              </h2>
+              <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                {t.snapshot.map((item) => (
+                  <div key={item.label} className="bg-white p-4">
+                    <p className="text-sm font-semibold text-gray-500">
+                      {item.label}
+                    </p>
+                    <p className="mt-2 font-bold leading-6 text-gray-950">
+                      {item.value}
                     </p>
                   </div>
-                </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
+        </div>
+      </section>
 
-          {/* Photos Link */}
-          <div className="text-center mt-12 p-6 bg-gray-50 rounded-lg">
-            <p className="text-lg text-gray-700 mb-4">
-              {t.photosLink}{" "}
-              <Link
-                href="/photos"
-                className="text-blue-600 hover:text-blue-800 underline font-medium"
+      <section className="py-12 md:py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {interests.map((interest) => (
+              <article
+                key={interest.id}
+                className={`flex min-h-72 flex-col border border-gray-200 border-l-4 bg-white p-6 shadow-sm transition-[box-shadow,transform,border-color] duration-300 hover:-translate-y-1 hover:shadow-lg ${interest.accentClass} ${
+                  interest.featured ? "md:col-span-2" : ""
+                }`}
               >
-                {t.photosLinkText}
-              </Link>
-              {lang === "zh" ? "！" : "!"}
-            </p>
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-sm font-semibold text-gray-500">
+                      {interest.tags[lang][0]}
+                    </p>
+                    <h2 className="mt-2 text-2xl font-bold text-gray-950">
+                      {lang === "en" ? interest.nameEn : interest.name}
+                    </h2>
+                  </div>
+                  <span
+                    aria-hidden="true"
+                    className="flex h-12 w-12 shrink-0 items-center justify-center bg-slate-100 text-xs font-bold text-gray-700"
+                  >
+                    {interest.mark}
+                  </span>
+                </div>
+
+                <p className="mt-5 flex-1 leading-7 text-gray-700">
+                  {lang === "en"
+                    ? interest.descriptionEn
+                    : interest.description}
+                </p>
+
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {interest.tags[lang].map((tag) => (
+                    <span
+                      key={tag}
+                      className="border border-gray-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-gray-700"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {interest.linkHref && (
+                  <Link
+                    href={interest.linkHref}
+                    className="mt-6 inline-flex w-fit items-center justify-center bg-gray-950 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-cyan-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500"
+                  >
+                    {lang === "en" ? interest.linkTextEn : interest.linkText}
+                  </Link>
+                )}
+              </article>
+            ))}
           </div>
         </div>
       </section>
