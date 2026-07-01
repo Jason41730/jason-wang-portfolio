@@ -39,8 +39,8 @@ export default function About() {
         },
         {
           label: "Program",
-          value: "Youth Billion",
-          detail: "Selected for the IBM Quantum Dream program on July 1, 2026",
+          value: "Taiwan Global Pathfinders",
+          detail: "IBM Quantum Dream program, July 13-28, 2026",
         },
       ],
       researchTitle: "Research Direction",
@@ -86,7 +86,7 @@ export default function About() {
         {
           label: "計畫",
           value: "青年百億",
-          detail: "2026 年 7 月 1 日錄取 IBM 量子夢計畫",
+          detail: "IBM 量子夢研習時間：2026 年 7 月 13 日至 7 月 28 日",
         },
       ],
       researchTitle: "研究方向",

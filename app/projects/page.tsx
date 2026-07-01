@@ -22,7 +22,7 @@ export default function Projects() {
       separatorOne: ", ",
       cadContest: "2025 EDA CAD Contest",
       separatorTwo: ", and ",
-      youthBillion: "Youth Billion / IBM Quantum",
+      youthBillion: "Taiwan Global Pathfinders / IBM Quantum",
       descriptionEnd: ".",
       webProjectsTitle: "Web Programming Projects",
       cadContestTitle: "2025 CAD Contest Problem B - Excellent Award",
@@ -41,16 +41,16 @@ export default function Projects() {
       cadCategoryTitle: "2025 EDA / CAD Contest",
       cadCategoryDescription:
         "Award-winning EDA work focused on optimization, algorithms, and contest results.",
-      quantumCategoryTitle: "Youth Billion / IBM Quantum",
+      quantumCategoryTitle: "Taiwan Global Pathfinders / IBM Quantum",
       quantumCategoryDescription:
-        "A 2026 selected overseas program plan connecting quantum computing, EDA, and public technical writing.",
-      quantumSectionEyebrow: "2026 Selected Program",
+        "A 2026 overseas program connecting quantum computing, EDA, and public technical writing.",
+      quantumSectionEyebrow: "2026 Program | July 13-28",
       quantumSectionTitle: "IBM Quantum Dream: NYC Research Program",
       quantumSectionSubtitle:
         "A long-term public learning project around quantum computing, EDA, and software systems.",
       quantumSectionDescription:
-        "Selected for the Youth Billion Overseas Dream Fund on July 1, 2026. The plan turns the program into a public knowledge base: pre-trip preparation posts, on-site observation reports, daily technical notes, and an open-source quantum optimization example.",
-      quantumStatus: "Accepted on July 1, 2026",
+        "The Taiwan Global Pathfinders IBM Quantum program runs from July 13-28, 2026. The plan turns the program into a public knowledge base: pre-trip preparation posts, on-site observation reports, daily technical notes, and an open-source quantum optimization example.",
+      quantumStatus: "Program dates: July 13-28, 2026",
       quantumLink: "Read Program Plan",
       quantumMetrics: [
         { label: "Program", value: "I-9-10", detail: "IBM Quantum Dream" },
@@ -92,14 +92,14 @@ export default function Projects() {
         "2025 年以最佳化、演算法與競賽成果為核心的 EDA 研究與實作。",
       quantumCategoryTitle: "青年百億 / IBM Quantum",
       quantumCategoryDescription:
-        "2026 年錄取的海外圓夢計畫，串接量子運算、EDA 與公開技術寫作。",
-      quantumSectionEyebrow: "2026 錄取計畫",
+        "2026 年海外研習計畫，串接量子運算、EDA 與公開技術寫作。",
+      quantumSectionEyebrow: "2026 研習計畫 | 7/13-7/28",
       quantumSectionTitle: "I-9-10 IBM 量子夢：紐約研習營",
       quantumSectionSubtitle:
         "以量子運算、EDA 與軟體系統為核心的長期公開學習專案。",
       quantumSectionDescription:
-        "我於 2026 年 7 月 1 日確認錄取青年百億海外圓夢基金計畫。這不只是一次海外研習，而是會延伸成公開知識庫：行前申請與技術準備文章、研習期間的專業觀察報告、每日技術筆記，以及一個開源量子最佳化範例。",
-      quantumStatus: "2026 年 7 月 1 日已確認錄取",
+        "青年百億 IBM Quantum 計畫的研習時間是 2026 年 7 月 13 日至 7 月 28 日。這不只是一次海外研習，而是會延伸成公開知識庫：行前申請與技術準備文章、研習期間的專業觀察報告、每日技術筆記，以及一個開源量子最佳化範例。",
+      quantumStatus: "研習時間：2026 年 7 月 13 日至 7 月 28 日",
       quantumLink: "查看計畫內容",
       quantumMetrics: [
         { label: "計畫", value: "I-9-10", detail: "IBM 量子夢" },
@@ -163,18 +163,15 @@ export default function Projects() {
       title: t.quantumCategoryTitle,
       description: t.quantumCategoryDescription,
       count: 1,
-      image: "/images/about1.jpg",
-      imageAlt:
-        lang === "en"
-          ? "Personal travel portrait"
-          : "個人旅行照片",
-      imageClass: "object-cover",
+      image: null,
+      imageAlt: "",
+      imageClass: "",
       accentClass: "border-amber-500",
       tagClass: "bg-amber-50 text-amber-800",
       featured:
         lang === "en"
-          ? ["2026 Selected", "IBM Quantum", "Knowledge Base"]
-          : ["2026 錄取", "IBM Quantum", "知識庫"],
+          ? ["July 13-28", "IBM Quantum", "Knowledge Base"]
+          : ["7/13-7/28", "IBM Quantum", "知識庫"],
     },
   ];
 
@@ -249,13 +246,17 @@ export default function Projects() {
                   }}
                 >
                   <div className="relative h-40 border-b border-gray-200 bg-gray-100">
-                    <Image
-                      src={category.image}
-                      alt={category.imageAlt}
-                      fill
-                      className={category.imageClass}
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
+                    {category.image ? (
+                      <Image
+                        src={category.image}
+                        alt={category.imageAlt}
+                        fill
+                        className={category.imageClass}
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                    ) : (
+                      <div className="h-full w-full bg-white" aria-hidden="true" />
+                    )}
                   </div>
                   <div className="p-5">
                     <div className="mb-3 flex items-start justify-between gap-3">
@@ -482,15 +483,10 @@ export default function Projects() {
             className="scroll-mt-24 overflow-hidden border border-gray-200 bg-white shadow-sm"
           >
             <div className="grid lg:grid-cols-[0.92fr_1.08fr]">
-              <div className="relative min-h-[300px] border-b border-gray-200 bg-gray-100 lg:border-b-0 lg:border-r">
-                <Image
-                  src="/images/about1.jpg"
-                  alt={lang === "en" ? "Personal travel portrait" : "個人旅行照片"}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 42vw"
-                />
-              </div>
+              <div
+                className="min-h-[300px] border-b border-gray-200 bg-white lg:border-b-0 lg:border-r"
+                aria-hidden="true"
+              />
               <div className="p-8">
                 <span className="mb-3 inline-block border border-amber-200 bg-amber-50 px-2.5 py-1 text-xs font-semibold text-amber-800">
                   {t.quantumSectionEyebrow}

@@ -19,7 +19,7 @@ export default function Hero({ lang }: HeroProps) {
       secondaryCta: "Contact Me",
       proofPoints: [
         "CAD Contest Excellent Award",
-        "Youth Billion IBM Quantum selected",
+        "Taiwan Global Pathfinders IBM Quantum",
         "AI + LINE Bot products",
         "Next.js dashboards",
       ],
@@ -34,7 +34,7 @@ export default function Hero({ lang }: HeroProps) {
       secondaryCta: "聯絡我",
       proofPoints: [
         "CAD Contest 優等獎",
-        "青年百億 IBM Quantum 錄取",
+        "青年百億 IBM Quantum 研習",
         "AI + LINE Bot 產品",
         "Next.js Dashboard",
       ],

@@ -31,7 +31,7 @@ export default function Welcome({ lang }: WelcomeProps) {
         },
         {
           title: "Quantum + EDA public knowledge",
-          text: "After being selected for the Youth Billion IBM Quantum program, I am turning the plan into public writing, technical notes, and an open-source learning example.",
+          text: "Through the Taiwan Global Pathfinders IBM Quantum program from July 13-28, 2026, I am turning the plan into public writing, technical notes, and an open-source learning example.",
         },
       ],
       closing:
@@ -60,7 +60,7 @@ export default function Welcome({ lang }: WelcomeProps) {
         },
         {
           title: "量子 + EDA 公開知識",
-          text: "錄取青年百億 IBM Quantum 計畫後，我會把這份計畫延伸成公開文章、技術筆記與開源學習範例。",
+          text: "我將於 2026 年 7 月 13 日至 7 月 28 日參與青年百億 IBM Quantum 計畫，並把這份計畫延伸成公開文章、技術筆記與開源學習範例。",
         },
       ],
       closing:

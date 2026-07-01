@@ -1,7 +1,6 @@
 "use client";
 
 import { useLanguage } from "@/components/LanguageProvider";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function IBMQuantumDreamProject() {
@@ -10,7 +9,7 @@ export default function IBMQuantumDreamProject() {
   const content = {
     en: {
       backToProjects: "Back to Projects",
-      eyebrow: "Youth Billion Overseas Dream Fund | Accepted July 1, 2026",
+      eyebrow: "Taiwan Global Pathfinders | July 13-28, 2026",
       title: "IBM Quantum Dream: NYC Research Program",
       subtitle:
         "A public learning and research-writing project connecting quantum computing, EDA, and logic synthesis.",
@@ -18,7 +17,7 @@ export default function IBMQuantumDreamProject() {
         "This program is part of my transition from NTUEE into NTU GIEE and Prof. Jie-Hong Jiang's ALCom Lab. The core goal is to turn an overseas quantum-computing experience into public technical writing, reusable examples, and a longer-term knowledge base for students interested in quantum systems and EDA.",
       metrics: [
         { label: "Program", value: "I-9-10", detail: "IBM Quantum Dream" },
-        { label: "Status", value: "Selected", detail: "Confirmed on 2026/07/01" },
+        { label: "Dates", value: "July 13-28", detail: "2026 NYC program" },
         { label: "Main Output", value: "Knowledge Base", detail: "Quantum + EDA notes" },
         { label: "Code Output", value: "Open Source", detail: "Quantum optimization demo" },
       ],
@@ -27,7 +26,7 @@ export default function IBMQuantumDreamProject() {
         {
           phase: "Before the program",
           title: "Preparation and application sharing",
-          text: "Publish three guide-style posts on Dcard and this portfolio, covering application strategy, technical preparation, and how to use Youth Billion resources.",
+          text: "Publish three guide-style posts on Dcard and this portfolio, covering application strategy, technical preparation, and how to use Taiwan Global Pathfinders resources.",
         },
         {
           phase: "During the program",
@@ -55,7 +54,7 @@ export default function IBMQuantumDreamProject() {
     },
     zh: {
       backToProjects: "返回專案列表",
-      eyebrow: "青年百億海外圓夢基金計畫 | 2026 年 7 月 1 日錄取",
+      eyebrow: "青年百億海外圓夢基金計畫 | 2026 年 7 月 13 日至 7 月 28 日",
       title: "I-9-10 IBM 量子夢：紐約研習營",
       subtitle:
         "串接量子運算、EDA 與邏輯合成的公開學習與研究寫作專案。",
@@ -63,7 +62,7 @@ export default function IBMQuantumDreamProject() {
         "這個計畫也承接我從台大電機進入台大電子所、加入江介宏教授 ALCom Lab 的下一步。我希望不只是完成一次海外研習，而是把量子運算現場觀察整理成公開技術文章、可重用範例，以及給未來學生參考的長期知識庫。",
       metrics: [
         { label: "計畫", value: "I-9-10", detail: "IBM 量子夢" },
-        { label: "狀態", value: "已錄取", detail: "2026/07/01 確認" },
+        { label: "時間", value: "7/13-7/28", detail: "2026 紐約研習" },
         { label: "主要成果", value: "知識庫", detail: "量子 + EDA 筆記" },
         { label: "程式成果", value: "開源", detail: "量子最佳化範例" },
       ],
@@ -128,24 +127,19 @@ export default function IBMQuantumDreamProject() {
           </Link>
 
           <div className="overflow-hidden border border-gray-200 bg-white shadow-sm">
-            <div className="relative min-h-[320px] border-b border-gray-200 bg-gray-100">
-              <Image
-                src="/images/about1.jpg"
-                alt={lang === "en" ? "Personal travel portrait" : "個人旅行照片"}
-                fill
-                className="object-cover"
-                priority
-                sizes="(max-width: 1024px) 100vw, 1024px"
+            <div className="border-b border-gray-200 bg-slate-50 p-6 md:p-8">
+              <div
+                className="mb-8 h-48 border border-gray-200 bg-white"
+                aria-hidden="true"
               />
-              <div className="absolute inset-0 bg-gray-950/35" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-100">
+              <div>
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-700">
                   {t.eyebrow}
                 </p>
-                <h1 className="max-w-4xl text-4xl font-bold leading-tight text-white md:text-5xl">
+                <h1 className="max-w-4xl text-4xl font-bold leading-tight text-gray-950 md:text-5xl">
                   {t.title}
                 </h1>
-                <p className="mt-4 max-w-3xl text-lg font-medium leading-8 text-gray-100">
+                <p className="mt-4 max-w-3xl text-lg font-medium leading-8 text-gray-700">
                   {t.subtitle}
                 </p>
               </div>
