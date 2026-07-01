@@ -9,66 +9,115 @@ interface WelcomeProps {
 export default function Welcome({ lang }: WelcomeProps) {
   const content = {
     en: {
-      heading: "Welcome To My Site",
-      paragraph1:
-        "Hello! I'm Wei-Jie Wang, a senior student in the Department of Electrical Engineering at National Taiwan University. I have taken Web Programming courses and completed numerous projects, which have significantly improved my web development skills. For detailed information about my projects, please visit the",
+      heading: "What I Am Building Toward",
+      intro:
+        "I am Wei-Jie Wang, a senior in Electrical Engineering at National Taiwan University. I care about building things that are technically solid, understandable to users, and useful beyond a class assignment.",
       projectsLink: "Projects",
-      paragraph1End: "page.",
-      paragraph2:
-        "I'm also working on research projects in the EDA Lab, enhancing my professional skills through hands-on projects. I have been accepted to the Graduate Institute of Electronics Engineering (GIEE) at National Taiwan University, EDA group, and will officially begin my graduate studies in September 2026.",
-      paragraph3:
-        "Beyond academics, my greatest interests are baseball and watching movies. I also enjoy various sports and love to travel and explore new places. You can check out my travel photos in the",
+      contactLink: "Contact",
       photosLink: "Photos",
-      paragraph3End: "page. If you share these interests, feel free to reach out and connect!",
+      focusTitle: "Current Focus",
+      focusItems: [
+        {
+          title: "Full-stack product engineering",
+          text: "I build dashboards, user flows, authentication, media upload, and API integrations with Next.js and TypeScript.",
+        },
+        {
+          title: "AI-assisted workflows",
+          text: "Several projects combine LINE Bot, LLM analysis, and web dashboards so users can interact through natural language.",
+        },
+        {
+          title: "EDA/CAD research",
+          text: "I am working on optimization-oriented EDA projects and will begin graduate study in the NTU GIEE EDA group in September 2026.",
+        },
+      ],
+      closing:
+        "Outside engineering, I spend a lot of time on baseball, movies, sports, and travel. The personal side matters too, because good tools are still made by people with a point of view.",
     },
     zh: {
-      heading: "歡迎來到我的網站",
-      paragraph1:
-        "嗨！我是汪煒杰，目前就讀國立台灣大學電機工程學系大四。我修習了網頁程式設計課程，並完成了許多專案，這些經驗大幅提升了我的網頁開發能力。關於我的專案詳情，請參閱",
+      heading: "我正在累積的方向",
+      intro:
+        "我是汪煒杰，目前就讀國立台灣大學電機工程學系大四。我在意的不只是把功能做出來，也希望作品在技術上可靠、對使用者清楚，而且不只是課堂作業。",
       projectsLink: "專案",
-      paragraph1End: "頁面。",
-      paragraph2:
-        "我也在EDA實驗室做專題，透過實際的project來提升自己的專業能力。我已經確定進入國立台灣大學電子工程學研究所（NTU GIEE - Graduate Institute of Electronics Engineering）EDA組，將於2026年9月開始正式就讀。",
-      paragraph3:
-        "除了課業之外，我最大的興趣就是棒球和看電影，也喜歡各種運動，而且我很愛出去玩。你可以到",
+      contactLink: "聯絡",
       photosLink: "照片",
-      paragraph3End: "頁面看看我的出遊照片。如果你也喜歡棒球或電影，歡迎一起交流！",
+      focusTitle: "目前專注",
+      focusItems: [
+        {
+          title: "全端產品工程",
+          text: "我使用 Next.js 與 TypeScript 建構 dashboard、使用者流程、登入、媒體上傳與 API 整合。",
+        },
+        {
+          title: "AI 輔助工作流程",
+          text: "多個專案結合 LINE Bot、LLM 分析與 Web dashboard，讓使用者能用自然語言完成記錄與查詢。",
+        },
+        {
+          title: "EDA/CAD 研究",
+          text: "我正在做以最佳化為核心的 EDA 專題，也將於 2026 年 9 月進入台大電子所 EDA 組。",
+        },
+      ],
+      closing:
+        "工程之外，我很喜歡棒球、電影、運動和旅行。這些個人興趣也讓我更在意產品背後的使用情境與人的感受。",
     },
   };
 
   const t = content[lang];
 
   return (
-    <section className="bg-white py-16 md:py-24">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-6">
-          {t.heading}
-        </h2>
-        <div className="space-y-4 text-base md:text-lg text-gray-700 leading-relaxed">
-          <p>
-            {t.paragraph1}{" "}
-            <Link
-              href="/projects"
-              className="text-blue-600 hover:text-blue-800 underline font-medium"
-            >
-              {t.projectsLink}
-            </Link>{" "}
-            {t.paragraph1End}
-          </p>
-          <p>{t.paragraph2}</p>
-          <p>
-            {t.paragraph3}{" "}
-            <Link
-              href="/photos"
-              className="text-blue-600 hover:text-blue-800 underline font-medium"
-            >
-              {t.photosLink}
-            </Link>{" "}
-            {t.paragraph3End}
-          </p>
+    <section className="bg-white py-16 md:py-20">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div>
+            <h2 className="text-3xl font-bold text-gray-950 md:text-4xl">
+              {t.heading}
+            </h2>
+            <p className="mt-5 text-base leading-8 text-gray-700 md:text-lg">
+              {t.intro}
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/projects"
+                className="border border-gray-950 bg-gray-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-gray-800"
+              >
+                {t.projectsLink}
+              </Link>
+              <Link
+                href="/contact"
+                className="border border-gray-300 px-5 py-3 text-sm font-semibold text-gray-950 transition-colors hover:border-gray-950"
+              >
+                {t.contactLink}
+              </Link>
+              <Link
+                href="/photos"
+                className="border border-gray-300 px-5 py-3 text-sm font-semibold text-gray-950 transition-colors hover:border-gray-950"
+              >
+                {t.photosLink}
+              </Link>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-gray-500">
+              {t.focusTitle}
+            </h3>
+            <div className="grid gap-4">
+              {t.focusItems.map((item) => (
+                <div
+                  key={item.title}
+                  className="border-l-4 border-cyan-500 bg-gray-50 p-5"
+                >
+                  <h4 className="text-lg font-bold text-gray-950">
+                    {item.title}
+                  </h4>
+                  <p className="mt-2 leading-7 text-gray-700">{item.text}</p>
+                </div>
+              ))}
+            </div>
+            <p className="mt-6 text-base leading-8 text-gray-700">
+              {t.closing}
+            </p>
+          </div>
         </div>
       </div>
     </section>
   );
 }
-

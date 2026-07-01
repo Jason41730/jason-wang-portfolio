@@ -3,7 +3,13 @@
 import { useLanguage } from "@/components/LanguageProvider";
 import Link from "next/link";
 import Image from "next/image";
-import { webProjects } from "./projects-data";
+import { ProjectSummary, webProjects } from "./projects-data";
+
+const statusStyles: Record<ProjectSummary["statusKind"], string> = {
+  live: "border-emerald-200 bg-emerald-50 text-emerald-700",
+  local: "border-amber-200 bg-amber-50 text-amber-800",
+  research: "border-cyan-200 bg-cyan-50 text-cyan-700",
+};
 
 export default function Projects() {
   const { lang } = useLanguage();
@@ -22,6 +28,10 @@ export default function Projects() {
       overviewDescription:
         "Choose an area first, or keep scrolling to browse every project in detail.",
       viewSection: "View Section",
+      roleLabel: "Role",
+      impactLabel: "Impact",
+      techLabel: "Stack",
+      moreTech: "more",
       projectCount: "projects",
       singleProjectCount: "project",
       webCategoryDescription:
@@ -43,6 +53,10 @@ export default function Projects() {
       overviewDescription:
         "可以先從分類開始看，也可以繼續往下瀏覽每個專案的詳細介紹。",
       viewSection: "查看分類",
+      roleLabel: "角色",
+      impactLabel: "成果",
+      techLabel: "技術",
+      moreTech: "更多",
       projectCount: "個專案",
       singleProjectCount: "個專案",
       webCategoryDescription:
@@ -125,7 +139,6 @@ export default function Projects() {
             {t.descriptionEnd}
           </p>
 
-          {/* Project Areas */}
           <div className="mb-16">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-6">
               <div>
@@ -142,7 +155,7 @@ export default function Projects() {
                 <a
                   key={category.id}
                   href={`#${category.id}`}
-                  className={`group bg-white rounded-lg border border-gray-200 border-l-4 ${category.accentClass} shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden`}
+                  className={`group bg-white border border-gray-200 border-l-4 ${category.accentClass} shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden`}
                   onClick={(e) => {
                     e.preventDefault();
                     const element = document.getElementById(category.id);
@@ -210,7 +223,6 @@ export default function Projects() {
             </div>
           </div>
 
-          {/* Web Programming Projects */}
           <div id="web-projects" className="mb-16 scroll-mt-20">
             <h2 className="text-3xl font-bold text-gray-900 mb-8">
               {t.webProjectsTitle}
@@ -219,7 +231,7 @@ export default function Projects() {
               {webProjects.map((project) => (
                 <div
                   key={project.id}
-                  className="bg-white rounded-lg shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border border-gray-200 overflow-hidden flex flex-col"
+                  className="bg-white shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-gray-200 overflow-hidden flex flex-col"
                 >
                   <div className="relative h-48 bg-gray-200">
                     {project.image ? (
@@ -258,30 +270,63 @@ export default function Projects() {
                     )}
                   </div>
                   <div className="p-6 flex flex-col flex-1">
+                    <div className="mb-3 flex items-center justify-between gap-3">
+                      <span
+                        className={`border px-2.5 py-1 text-xs font-semibold ${statusStyles[project.statusKind]}`}
+                      >
+                        {lang === "en" ? project.statusEn : project.status}
+                      </span>
+                      <span className="text-xs font-medium uppercase tracking-[0.14em] text-gray-400">
+                        {t.techLabel}
+                      </span>
+                    </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-2">
                       {lang === "en" ? project.titleEn : project.title}
                     </h3>
                     <p className="text-sm text-gray-600 mb-3">
                       {lang === "en" ? project.subtitleEn : project.subtitle}
                     </p>
-                    <p className="text-gray-700 mb-4 line-clamp-3">
+                    <dl className="mb-4 space-y-3 border-y border-gray-100 py-4">
+                      <div>
+                        <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-gray-500">
+                          {t.roleLabel}
+                        </dt>
+                        <dd className="mt-1 text-sm font-medium text-gray-900">
+                          {lang === "en" ? project.roleEn : project.role}
+                        </dd>
+                      </div>
+                      <div>
+                        <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-gray-500">
+                          {t.impactLabel}
+                        </dt>
+                        <dd className="mt-1 text-sm leading-6 text-gray-700">
+                          {lang === "en" ? project.impactEn : project.impact}
+                        </dd>
+                      </div>
+                    </dl>
+                    <p className="text-gray-700 mb-4 line-clamp-2">
                       {lang === "en"
                         ? project.descriptionEn
                         : project.description}
                     </p>
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tech.map((tech) => (
+                      {project.tech.slice(0, 4).map((tech) => (
                         <span
                           key={tech}
-                          className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
+                          className="px-2 py-1 bg-slate-100 text-slate-700 text-xs"
                         >
                           {tech}
                         </span>
                       ))}
+                      {project.tech.length > 4 && (
+                        <span className="px-2 py-1 bg-gray-50 text-gray-500 text-xs">
+                          +{project.tech.length - 4} {t.moreTech}
+                        </span>
+                      )}
                     </div>
                     <Link
                       href={`/projects/${project.id}`}
-                      className="inline-block w-full text-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium mt-auto"
+                      className="inline-block w-full text-center px-4 py-2 bg-gray-950 text-white hover:bg-cyan-700 transition-colors font-medium mt-auto"
                     >
                       {lang === "en" ? "See More" : "查看更多"}
                     </Link>
@@ -291,9 +336,11 @@ export default function Projects() {
             </div>
           </div>
 
-          {/* CAD Contest Project */}
-          <div id="cad-contest" className="p-8 bg-gray-50 rounded-lg border-l-4 border-blue-500 shadow-md scroll-mt-20">
+          <div id="cad-contest" className="p-8 bg-gray-50 border-l-4 border-cyan-600 shadow-sm scroll-mt-20">
             <div className="mb-4">
+              <span className="mb-3 inline-block border border-cyan-200 bg-cyan-50 px-2.5 py-1 text-xs font-semibold text-cyan-700">
+                {lang === "en" ? "Research / Award" : "研究 / 競賽獲獎"}
+              </span>
               <h2 className="text-3xl font-bold text-gray-900 mb-2">
                 {t.cadContestTitle}
               </h2>
@@ -316,9 +363,20 @@ export default function Projects() {
                 ? "I participated in the CAD Contest Problem B competition and achieved Excellent Award (優等) in the domestic competition. This project focused on power and timing optimization using multibit flip-flops."
                 : "我參與了 CAD Contest Problem B 競賽，在國內賽中獲得優等獎。此專案專注於使用多位元正反器進行功耗與時序最佳化。"}
             </p>
+            <div className="mb-5 grid gap-3 md:grid-cols-3">
+              {[
+                lang === "en" ? "Role: Algorithm + implementation" : "角色：演算法與實作",
+                lang === "en" ? "Evidence: Beta rank 2" : "證據：Beta ranking 2",
+                lang === "en" ? "Stack: C++, DEF/LEF, STA" : "技術：C++, DEF/LEF, STA",
+              ].map((item) => (
+                <div key={item} className="border border-gray-200 bg-white px-4 py-3 text-sm font-medium text-gray-700">
+                  {item}
+                </div>
+              ))}
+            </div>
             <Link
               href="/projects/cad-contest"
-              className="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+              className="inline-block px-4 py-2 bg-gray-950 text-white hover:bg-cyan-700 transition-colors font-medium"
             >
               {lang === "en" ? "See More" : "查看更多"}
             </Link>

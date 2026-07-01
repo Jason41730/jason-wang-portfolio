@@ -15,6 +15,34 @@ export default function CADContestProject() {
       group: "Group ID: cadb1050",
       description:
         "I participated in the CAD Contest Problem B competition and achieved Excellent Award (優等) in the domestic competition. This project focused on power and timing optimization using multibit flip-flops.",
+      caseStudyTitle: "Case Study Snapshot",
+      caseStudyItems: [
+        {
+          label: "Problem",
+          text: "Reduce the weighted cost of power, timing, and area while respecting placement legality constraints.",
+        },
+        {
+          label: "Approach",
+          text: "Built a C++ flow with DEF/LEF parsing, flip-flop management, legalization, and Verilog/DEF export.",
+        },
+        {
+          label: "Outcome",
+          text: "Achieved Excellent Award, Beta test rank 2, and final STA reports with setup/hold WNS at 0.",
+        },
+      ],
+      metrics: [
+        { label: "Award", value: "Excellent", detail: "Domestic Competition" },
+        { label: "Beta Test", value: "Rank 2", detail: "Score + runtime comparison" },
+        { label: "Timing", value: "WNS 0", detail: "Setup and hold after final STA" },
+        { label: "Core", value: "C++", detail: "DEF / LEF / Verilog flow" },
+      ],
+      evidenceTitle: "Engineering Evidence",
+      evidenceList: [
+        "Custom parsers for LEF, DEF, Verilog, SDC, and weight files",
+        "Legalizer and flip-flop management modules for overlap resolution",
+        "Generated .def, .v, and .list outputs through the final executable",
+        "STA/QoR reports used to verify timing closure across corners",
+      ],
       details: "Project Details",
       detailsList: [
         "Applied EDA floorplanning and algorithm knowledge to solve flipflop placement problems",
@@ -35,6 +63,9 @@ export default function CADContestProject() {
       certificateTitle: "Award Certificate",
       certificateDescription:
         "Ministry of Education certificate for the 2025 Integrated Circuits Computer Aided Design Contest Award.",
+      artifactTitle: "Implementation Artifact",
+      artifactDescription:
+        "Visualization from the 2025ntubeer project showing the grid-based placement view used to inspect DEF component distribution and debug legalization behavior.",
       researchInfo: "Research Information",
       researchTopic: "Research Topic",
       advisor: "Advisor",
@@ -83,6 +114,34 @@ export default function CADContestProject() {
       group: "組別：cadb1050",
       description:
         "我參與了 CAD Contest Problem B 競賽，在國內賽中獲得優等獎。此專案專注於使用多位元正反器進行功耗與時序最佳化。",
+      caseStudyTitle: "Case Study 摘要",
+      caseStudyItems: [
+        {
+          label: "問題",
+          text: "在滿足 placement legality 的限制下，降低 power、timing 與 area 的加權成本。",
+        },
+        {
+          label: "方法",
+          text: "以 C++ 建立包含 DEF/LEF parser、flip-flop 管理、legalization、Verilog/DEF export 的流程。",
+        },
+        {
+          label: "成果",
+          text: "獲得國內賽優等獎、Beta test ranking 2，final STA 報告中 setup/hold WNS 皆為 0。",
+        },
+      ],
+      metrics: [
+        { label: "獎項", value: "優等獎", detail: "國內賽" },
+        { label: "Beta Test", value: "Rank 2", detail: "分數與 runtime 比較" },
+        { label: "Timing", value: "WNS 0", detail: "Final STA setup/hold" },
+        { label: "核心", value: "C++", detail: "DEF / LEF / Verilog flow" },
+      ],
+      evidenceTitle: "工程證據",
+      evidenceList: [
+        "自行撰寫 LEF、DEF、Verilog、SDC、weight file parser",
+        "以 Legalizer 與 flip-flop 管理模組處理 overlap resolution",
+        "透過 final executable 產生 .def、.v、.list 輸出",
+        "使用 STA/QoR reports 驗證多 corner timing closure",
+      ],
       details: "專案細節",
       detailsList: [
         "運用 EDA floorplanning 與演算法知識解決 flipflop 擺放問題",
@@ -103,6 +162,9 @@ export default function CADContestProject() {
       certificateTitle: "獎狀",
       certificateDescription:
         "2025 積體電路電腦輔助設計（CAD）軟體製作競賽教育部獎狀。",
+      artifactTitle: "實作佐證",
+      artifactDescription:
+        "這張圖來自 2025ntubeer 專案，用 grid-based placement view 檢查 DEF components 分布，並輔助 debug legalization 行為。",
       researchInfo: "研究資訊",
       researchTopic: "研究題目",
       advisor: "指導老師",
@@ -174,7 +236,10 @@ export default function CADContestProject() {
           </Link>
 
           {/* Project Header */}
-          <div className="mb-8 p-6 bg-gray-50 rounded-lg border-l-4 border-blue-500">
+          <div className="mb-8 border-l-4 border-cyan-600 bg-gray-50 p-6">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-cyan-700">
+              {lang === "en" ? "Research / Competition" : "研究 / 競賽"}
+            </p>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">
               {t.title}
             </h1>
@@ -183,6 +248,40 @@ export default function CADContestProject() {
               {t.award}
             </p>
             <p className="text-sm text-gray-600">{t.group}</p>
+          </div>
+
+          {/* Case Study Snapshot */}
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              {t.caseStudyTitle}
+            </h2>
+            <div className="grid gap-4 md:grid-cols-3">
+              {t.caseStudyItems.map((item) => (
+                <div key={item.label} className="border border-gray-200 bg-white p-5 shadow-sm">
+                  <p className="text-sm font-semibold uppercase tracking-[0.14em] text-cyan-700">
+                    {item.label}
+                  </p>
+                  <p className="mt-3 leading-7 text-gray-700">{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Metrics */}
+          <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+            {t.metrics.map((metric) => (
+              <div key={metric.label} className="border border-gray-200 bg-gray-50 p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gray-500">
+                  {metric.label}
+                </p>
+                <p className="mt-2 text-2xl font-bold text-gray-950">
+                  {metric.value}
+                </p>
+                <p className="mt-1 text-sm leading-5 text-gray-600">
+                  {metric.detail}
+                </p>
+              </div>
+            ))}
           </div>
 
           {/* Award Image */}
@@ -194,6 +293,41 @@ export default function CADContestProject() {
                 fill
                 className="object-contain"
               />
+            </div>
+          </div>
+
+          {/* Engineering Evidence */}
+          <div className="mb-8 border border-gray-200 bg-white p-6">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              {t.evidenceTitle}
+            </h2>
+            <div className="grid gap-3 md:grid-cols-2">
+              {t.evidenceList.map((item) => (
+                <div key={item} className="border-l-4 border-cyan-500 bg-gray-50 px-4 py-3 text-gray-700">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Implementation Artifact */}
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">
+              {t.artifactTitle}
+            </h2>
+            <p className="text-lg text-gray-700 leading-relaxed mb-4">
+              {t.artifactDescription}
+            </p>
+            <div className="overflow-hidden border border-gray-200 bg-gray-50 shadow-sm">
+              <div className="relative w-full aspect-[1400/1000]">
+                <Image
+                  src="/images/cad-def-grid-visualization.png"
+                  alt={t.artifactTitle}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 768px"
+                />
+              </div>
             </div>
           </div>
 
@@ -344,7 +478,7 @@ export default function CADContestProject() {
             </h2>
             <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
               <p className="text-gray-700 font-medium mb-2">
-                🏆 {t.awardLinkText}
+                {t.awardLinkText}
               </p>
               <a
                 href="https://www.iccad-contest.org/tw/05_results.html"
@@ -361,5 +495,4 @@ export default function CADContestProject() {
     </div>
   );
 }
-
 

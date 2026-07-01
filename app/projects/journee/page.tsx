@@ -14,6 +14,25 @@ export default function JourneeProject() {
       tagline: "Where moments find their meaning.",
       description:
         "Journee is an AI-powered emotion diary system that integrates LINE Bot and Web dashboard. Users can communicate and record emotions using natural language through LINE, powered by LLM for intelligent understanding and analysis. It allows users to record their emotions, analyze emotional trends, and browse/search/edit diaries on a web dashboard. The platform also features social functionality where users can share diaries, interact with the community, and chat with other users in real-time. Supports Google / GitHub / LINE Login binding, allowing multiple login methods for the same account.",
+      caseStudyItems: [
+        {
+          label: "Role",
+          text: "Full-stack development across LINE Bot, dashboard, authentication, media upload, and AI analysis flows.",
+        },
+        {
+          label: "Problem",
+          text: "Traditional diary apps make daily emotional tracking easy to abandon because users must open a separate app and write structured entries.",
+        },
+        {
+          label: "Outcome",
+          text: "Journee lets users record naturally in LINE, then review trends, diaries, and social interactions through a web dashboard.",
+        },
+      ],
+      projectStats: [
+        { label: "Interface", value: "LINE + Web" },
+        { label: "Auth", value: "3 providers" },
+        { label: "AI", value: "Emotion analysis" },
+      ],
       features: "Core Features",
       featuresList: [
         "Natural Language Communication: Use natural language to communicate and record emotions directly in LINE, powered by LLM for intelligent understanding and automatic emotion analysis and tagging",
@@ -47,6 +66,25 @@ export default function JourneeProject() {
       tagline: "Where moments find their meaning.",
       description:
         "Journee 是一個整合 LINE Bot 與 Web 儀表板的 AI 情緒日記系統。使用者可以使用自然語言與 LINE 溝通及記錄，透過 LLM 進行智能理解與分析。讓使用者在 LINE 上隨手記錄心情、分析情緒趨勢，並在網頁儀表板上瀏覽、搜尋、編輯日記。平台還包含社群功能，使用者可以分享日記、與社群互動，並在社群內即時聊天與其他使用者交流。支援 Google / GitHub / LINE Login 綁定，同一帳號可串多個登入方式。",
+      caseStudyItems: [
+        {
+          label: "角色",
+          text: "負責 LINE Bot、dashboard、authentication、圖片上傳與 AI 分析流程的全端開發。",
+        },
+        {
+          label: "問題",
+          text: "傳統日記 App 需要使用者另外開啟並填寫結構化內容，長期情緒記錄很容易中斷。",
+        },
+        {
+          label: "成果",
+          text: "Journee 讓使用者在 LINE 自然記錄，再透過 Web dashboard 回顧趨勢、日記與社群互動。",
+        },
+      ],
+      projectStats: [
+        { label: "介面", value: "LINE + Web" },
+        { label: "登入", value: "3 providers" },
+        { label: "AI", value: "情緒分析" },
+      ],
       features: "核心功能",
       featuresList: [
         "自然語言溝通：使用自然語言與 LINE 溝通及記錄，透過 LLM 進行智能理解，附帶自動情緒分析與標籤",
@@ -105,11 +143,45 @@ export default function JourneeProject() {
 
           {/* Project Header */}
           <div className="mb-8">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-cyan-700">
+              {lang === "en" ? "Full-stack AI Product" : "全端 AI 產品"}
+            </p>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">
               {t.title}
             </h1>
             <p className="text-2xl text-gray-700 mb-2">{t.subtitle}</p>
             <p className="text-lg text-gray-600 italic">{t.tagline}</p>
+          </div>
+
+          {/* Case Study Snapshot */}
+          <div className="mb-8 grid gap-4 md:grid-cols-3">
+            {t.caseStudyItems.map((item) => (
+              <div
+                key={item.label}
+                className="border border-gray-200 bg-white p-5 shadow-sm"
+              >
+                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-cyan-700">
+                  {item.label}
+                </p>
+                <p className="mt-3 leading-7 text-gray-700">{item.text}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {t.projectStats.map((stat) => (
+              <div
+                key={stat.label}
+                className="border border-gray-200 bg-gray-50 p-4"
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gray-500">
+                  {stat.label}
+                </p>
+                <p className="mt-2 text-xl font-bold text-gray-950">
+                  {stat.value}
+                </p>
+              </div>
+            ))}
           </div>
 
           {/* Project Image */}
@@ -290,4 +362,3 @@ export default function JourneeProject() {
     </div>
   );
 }
-
