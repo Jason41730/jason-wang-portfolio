@@ -1,119 +1,227 @@
 "use client";
 
-import Image from "next/image";
 import { useLanguage } from "@/components/LanguageProvider";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function About() {
   const { lang } = useLanguage();
 
   const content = {
     en: {
-      heading: "About Me",
-      paragraph1:
-        "Hello! I'm Wei-Jie Wang, currently a senior student in the Department of Electrical Engineering at National Taiwan University.",
-      paragraph2:
-        "I have taken Web Programming courses and completed numerous projects, which have significantly improved my web development skills. For detailed information about my projects, please visit the",
-      paragraph3:
-        "I'm also working on research projects in the EDA Lab, enhancing my professional skills through hands-on projects.",
-      cadContestMention: "I participated in CAD Contest Problem B and achieved Excellent Award (優等) in the domestic competition. For detailed information, please visit the",
-      paragraph4:
-        "I have been accepted to the Graduate Institute of Electronics Engineering (GIEE) at National Taiwan University, EDA group, and will officially begin my graduate studies in September 2026.",
-      paragraph5:
-        "Beyond academics, my greatest interests are baseball and watching movies. I also enjoy various sports and love to travel and explore new places. You can check out my travel photos in the",
-      paragraph6:
-        "This is my GitHub link, welcome to check it out!",
+      eyebrow: "About",
+      heading: "Wei-Jie Wang",
+      intro:
+        "I am a graduate of Electrical Engineering at National Taiwan University, preparing to begin graduate study at NTU GIEE in September 2026.",
+      body:
+        "My work sits between full-stack software, AI-assisted workflows, and EDA/CAD research. I like building systems that are usable enough for real users and rigorous enough to connect back to algorithms, optimization, and circuit design.",
+      research:
+        "My next research step is joining Prof. Jie-Hong Jiang's ALCom Lab, where I will work in the Logic Synthesis group.",
+      projectCta: "View Projects",
+      photoCta: "View Photos",
+      contactCta: "Contact",
+      highlightsTitle: "Current Snapshot",
+      highlights: [
+        {
+          label: "Education",
+          value: "NTUEE Graduate",
+          detail: "Incoming NTU GIEE student in September 2026",
+        },
+        {
+          label: "Research",
+          value: "Logic Synthesis",
+          detail: "Incoming ALCom Lab member under Prof. Jie-Hong Jiang",
+        },
+        {
+          label: "Award",
+          value: "2025 CAD Contest",
+          detail: "Problem B Excellent Award in the domestic competition",
+        },
+        {
+          label: "Program",
+          value: "Youth Billion",
+          detail: "Selected for the IBM Quantum Dream program on July 1, 2026",
+        },
+      ],
+      researchTitle: "Research Direction",
+      researchText:
+        "I am especially interested in how optimization, formal reasoning, and circuit representations can make hardware and software systems more reliable. My CAD Contest work gave me a practical foundation in DEF/LEF parsing, placement legality, timing, and power optimization; my next step is bringing that mindset into logic synthesis research.",
+      personalTitle: "Outside Engineering",
+      personalText:
+        "I spend a lot of time on baseball, movies, sports, and travel. The personal archive matters to me too, because a portfolio should show the person behind the work, not only the output.",
+      githubText: "You can also find my code and experiments on GitHub.",
+      labLink: "ALCom Lab official site",
+      projectsLink: "Projects",
+      photosLink: "Photos",
     },
     zh: {
-      heading: "關於我",
-      paragraph1:
-        "嗨！我是汪煒杰，目前就讀國立台灣大學電機工程學系大四。",
-      paragraph2:
-        "我修習了網頁程式設計課程，並完成了許多專案，這些經驗大幅提升了我的網頁開發能力。關於我的專案詳情，請參閱",
-      paragraph3:
-        "我也在EDA實驗室做專題，透過實際的project來提升自己的專業能力。",
-      cadContestMention: "我參與了 CAD Contest Problem B 競賽，在國內賽中獲得優等獎。詳細資訊請參閱",
-      paragraph4:
-        "我已經確定進入國立台灣大學電子工程學研究所（NTU GIEE - Graduate Institute of Electronics Engineering）EDA組，將於2026年9月開始正式就讀。",
-      paragraph5:
-        "除了課業之外，我最大的興趣就是棒球和看電影，也喜歡各種運動，而且我很愛出去玩。你可以到",
-      paragraph6:
-        "這是我的GitHub連結，歡迎大家點進來看看！",
+      eyebrow: "關於",
+      heading: "汪煒杰",
+      intro:
+        "我畢業於國立台灣大學電機工程學系，將於 2026 年 9 月開始就讀台大電子所。",
+      body:
+        "我的作品介於全端軟體、AI 輔助工作流程與 EDA/CAD 研究之間。我喜歡做真正能被使用的系統，也在意它背後能不能連回演算法、最佳化與電路設計。",
+      research:
+        "接下來我會進入台大電子所江介宏教授的 ALCom Lab，加入邏輯合成組繼續做研究。",
+      projectCta: "查看專案",
+      photoCta: "查看照片",
+      contactCta: "聯絡我",
+      highlightsTitle: "目前狀態",
+      highlights: [
+        {
+          label: "學歷",
+          value: "台大電機畢業",
+          detail: "2026 年 9 月將開始就讀台大電子所",
+        },
+        {
+          label: "研究",
+          value: "邏輯合成",
+          detail: "即將加入江介宏教授 ALCom Lab",
+        },
+        {
+          label: "獎項",
+          value: "2025 CAD Contest",
+          detail: "Problem B 國內賽優等獎",
+        },
+        {
+          label: "計畫",
+          value: "青年百億",
+          detail: "2026 年 7 月 1 日錄取 IBM 量子夢計畫",
+        },
+      ],
+      researchTitle: "研究方向",
+      researchText:
+        "我特別關心最佳化、形式化推理與電路表示如何讓硬體與軟體系統更可靠。CAD Contest 讓我實際接觸 DEF/LEF parser、placement legality、timing 與 power optimization；下一步我會把這樣的問題意識帶進邏輯合成研究。",
+      personalTitle: "工程之外",
+      personalText:
+        "我很喜歡棒球、電影、運動和旅行。個人的照片紀錄對我也很重要，因為作品集不應該只呈現成果，也應該讓人看見作品背後的人。",
+      githubText: "我的程式碼與實驗也可以在 GitHub 上看到。",
+      labLink: "ALCom Lab 官方網站",
+      projectsLink: "專案",
+      photosLink: "照片",
     },
   };
 
   const t = content[lang];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-slate-50">
       <section className="py-16 md:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Image at the top */}
-          <div className="mb-8 flex justify-center">
-            <div className="relative w-full max-w-2xl h-64 md:h-96 rounded-lg overflow-hidden shadow-lg">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+            <div className="relative aspect-[4/3] overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
               <Image
                 src="/images/about1.jpg"
-                alt="About me"
+                alt={lang === "en" ? "Wei-Jie Wang personal photo" : "汪煒杰個人照片"}
                 fill
                 className="object-cover"
                 priority
               />
             </div>
+
+            <div>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">
+                {t.eyebrow}
+              </p>
+              <h1 className="text-4xl font-bold text-gray-950 md:text-5xl">
+                {t.heading}
+              </h1>
+              <p className="mt-5 text-xl font-medium leading-8 text-gray-800">
+                {t.intro}
+              </p>
+              <p className="mt-5 leading-8 text-gray-700">{t.body}</p>
+              <p className="mt-5 leading-8 text-gray-700">
+                {t.research}{" "}
+                <a
+                  href="https://alcom.ee.ntu.edu.tw/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-cyan-700 underline underline-offset-4 transition-colors hover:text-cyan-900"
+                >
+                  {t.labLink}
+                </a>
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link
+                  href="/projects"
+                  className="bg-gray-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-cyan-700"
+                >
+                  {t.projectCta}
+                </Link>
+                <Link
+                  href="/photos"
+                  className="border border-gray-300 px-5 py-3 text-sm font-semibold text-gray-950 transition-colors hover:border-gray-950"
+                >
+                  {t.photoCta}
+                </Link>
+                <Link
+                  href="/contact"
+                  className="border border-gray-300 px-5 py-3 text-sm font-semibold text-gray-950 transition-colors hover:border-gray-950"
+                >
+                  {t.contactCta}
+                </Link>
+              </div>
+            </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-8">
-            {t.heading}
-          </h1>
-          <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
-            <p>{t.paragraph1}</p>
-            <p>
-              {t.paragraph2}{" "}
-              <a
+
+          <div className="mt-14">
+            <h2 className="mb-5 text-2xl font-bold text-gray-950">
+              {t.highlightsTitle}
+            </h2>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {t.highlights.map((item) => (
+                <div key={item.label} className="border border-gray-200 bg-white p-5 shadow-sm">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gray-500">
+                    {item.label}
+                  </p>
+                  <p className="mt-3 text-xl font-bold text-gray-950">
+                    {item.value}
+                  </p>
+                  <p className="mt-2 text-sm leading-6 text-gray-600">
+                    {item.detail}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-14 grid gap-6 lg:grid-cols-2">
+            <section className="border-l-4 border-cyan-600 bg-white p-6 shadow-sm">
+              <h2 className="text-2xl font-bold text-gray-950">
+                {t.researchTitle}
+              </h2>
+              <p className="mt-3 leading-8 text-gray-700">{t.researchText}</p>
+              <Link
                 href="/projects"
-                className="text-blue-600 hover:text-blue-800 underline font-medium"
+                className="mt-5 inline-flex font-semibold text-cyan-700 underline underline-offset-4 transition-colors hover:text-cyan-900"
               >
-                {lang === "en" ? "Projects" : "專案"}
-              </a>
-              {lang === "zh" ? "頁面。" : " page."}
-            </p>
-            <p>
-              {t.paragraph3} {t.cadContestMention}{" "}
-              <a
-                href="/projects"
-                className="text-blue-600 hover:text-blue-800 underline font-medium"
-              >
-                {lang === "en" ? "Projects" : "專案"}
-              </a>
-              {lang === "zh" ? "頁面。" : " page."}
-            </p>
-            <p className="font-medium text-gray-900">{t.paragraph4}</p>
-            <p>
-              {t.paragraph5}{" "}
-              <a
-                href="/photos"
-                className="text-blue-600 hover:text-blue-800 underline font-medium"
-              >
-                {lang === "en" ? "Photos" : "照片"}
-              </a>
-              {lang === "en" ? " page. If you share these interests, feel free to reach out and connect!" : "頁面看看我的出遊照片。如果你也喜歡棒球或電影，歡迎一起交流！"}
-            </p>
-            <p className="mt-8">
-              {t.paragraph6}{" "}
-              <a
-                href="https://github.com/Jason41730"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 underline"
-              >
-                GitHub
-              </a>
-              {lang === "en" ? ". Feel free to reach out via " : "。歡迎透過 "}
-              <a
-                href="/contact"
-                className="text-blue-600 hover:text-blue-800 underline font-medium"
-              >
-                {lang === "en" ? "contact" : "聯絡"}
-              </a>
-              {lang === "zh" ? " 與我聯繫。" : "."}
-            </p>
+                {t.projectsLink}
+              </Link>
+            </section>
+
+            <section className="border-l-4 border-amber-500 bg-white p-6 shadow-sm">
+              <h2 className="text-2xl font-bold text-gray-950">
+                {t.personalTitle}
+              </h2>
+              <p className="mt-3 leading-8 text-gray-700">{t.personalText}</p>
+              <div className="mt-5 flex flex-wrap gap-4">
+                <Link
+                  href="/photos"
+                  className="font-semibold text-cyan-700 underline underline-offset-4 transition-colors hover:text-cyan-900"
+                >
+                  {t.photosLink}
+                </Link>
+                <a
+                  href="https://github.com/Jason41730"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-cyan-700 underline underline-offset-4 transition-colors hover:text-cyan-900"
+                >
+                  GitHub
+                </a>
+              </div>
+              <p className="mt-4 text-sm text-gray-600">{t.githubText}</p>
+            </section>
           </div>
         </div>
       </section>

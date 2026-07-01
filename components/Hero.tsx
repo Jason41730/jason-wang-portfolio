@@ -11,28 +11,30 @@ export default function Hero({ lang }: HeroProps) {
   const content = {
     en: {
       name: "Jason Wang",
-      eyebrow: "NTUEE Senior | Incoming NTU GIEE EDA Group",
+      eyebrow: "NTUEE Graduate | Incoming NTU GIEE ALCom Lab Logic Synthesis Group",
       headline: "I build full-stack products, AI tools, and EDA/CAD systems.",
       intro:
-        "My work sits between software engineering and electronic design automation: shipping usable web products, experimenting with LLM workflows, and building optimization tools for IC design problems.",
+        "My work sits between software engineering and electronic design automation: shipping usable web products, experimenting with LLM workflows, and preparing for logic synthesis research in Prof. Jie-Hong Jiang's ALCom Lab.",
       primaryCta: "View Projects",
       secondaryCta: "Contact Me",
       proofPoints: [
         "CAD Contest Excellent Award",
+        "Youth Billion IBM Quantum selected",
         "AI + LINE Bot products",
         "Next.js dashboards",
       ],
     },
     zh: {
       name: "汪煒杰",
-      eyebrow: "台大電機大四 | 將就讀台大電子所 EDA 組",
+      eyebrow: "台大電機畢業 | 將加入台大電子所 ALCom Lab 邏輯合成組",
       headline: "我做全端產品、AI 工具，也做 EDA/CAD 系統。",
       intro:
-        "我喜歡把軟體工程和電子設計自動化放在一起思考：從能真正使用的 Web 產品、LLM 工作流程，到 IC 設計最佳化問題的演算法實作。",
+        "我喜歡把軟體工程和電子設計自動化放在一起思考：從能真正使用的 Web 產品、LLM 工作流程，到即將在江介宏教授 ALCom Lab 深入的邏輯合成研究。",
       primaryCta: "查看專案",
       secondaryCta: "聯絡我",
       proofPoints: [
         "CAD Contest 優等獎",
+        "青年百億 IBM Quantum 錄取",
         "AI + LINE Bot 產品",
         "Next.js Dashboard",
       ],

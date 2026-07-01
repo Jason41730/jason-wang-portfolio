@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 interface NavigationProps {
@@ -10,6 +11,7 @@ interface NavigationProps {
 
 export default function Navigation({ currentLang, onLangChange }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const navItems = {
     en: {
@@ -35,73 +37,59 @@ export default function Navigation({ currentLang, onLangChange }: NavigationProp
   };
 
   const t = navItems[currentLang];
+  const links = [
+    { href: "/", label: t.home, exact: true },
+    { href: "/about", label: t.about },
+    { href: "/projects", label: t.projects },
+    { href: "/interests", label: t.interests },
+    { href: "/skills", label: t.skills },
+    { href: "/photos", label: t.photos },
+    { href: "/contact", label: t.contact },
+  ];
+
+  const isActive = (href: string, exact?: boolean) =>
+    exact ? pathname === href : pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm">
+    <nav className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-gray-950/85 shadow-sm backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="text-white text-xl font-semibold">
+          <Link
+            href="/"
+            className="text-lg font-semibold tracking-wide text-white transition-colors hover:text-cyan-100"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
             {t.siteName}
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-4 lg:space-x-6">
-            <Link
-              href="/"
-              className="text-white hover:text-gray-300 transition-colors"
-            >
-              {t.home}
-            </Link>
-            <Link
-              href="/about"
-              className="text-white hover:text-gray-300 transition-colors"
-            >
-              {t.about}
-            </Link>
-            <Link
-              href="/projects"
-              className="text-white hover:text-gray-300 transition-colors"
-            >
-              {t.projects}
-            </Link>
-            <Link
-              href="/interests"
-              className="text-white hover:text-gray-300 transition-colors"
-            >
-              {t.interests}
-            </Link>
-            <Link
-              href="/skills"
-              className="text-white hover:text-gray-300 transition-colors"
-            >
-              {t.skills}
-            </Link>
-            <Link
-              href="/photos"
-              className="text-white hover:text-gray-300 transition-colors"
-            >
-              {t.photos}
-            </Link>
-            <Link
-              href="/contact"
-              className="text-white hover:text-gray-300 transition-colors"
-            >
-              {t.contact}
-            </Link>
-            {/* Language Toggle */}
+          <div className="hidden items-center gap-1 md:flex">
+            {links.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`px-3 py-2 text-sm font-medium transition-colors ${
+                  isActive(item.href, item.exact)
+                    ? "bg-white/10 text-cyan-100"
+                    : "text-white/85 hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
             <button
               onClick={() => onLangChange(currentLang === "en" ? "zh" : "en")}
-              className="text-white hover:text-gray-300 transition-colors px-2 py-1 border border-white/30 rounded ml-2"
+              className="ml-3 border border-white/25 px-3 py-2 text-sm font-semibold text-white transition-colors hover:border-cyan-200 hover:text-cyan-100"
+              aria-label={currentLang === "en" ? "Switch to Chinese" : "Switch to English"}
             >
-              {currentLang === "en" ? "中文" : "EN"}
+              {currentLang === "en" ? "ZH" : "EN"}
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-white"
+            className="inline-flex h-10 w-10 items-center justify-center text-white transition-colors hover:bg-white/10 md:hidden"
+            aria-expanded={isMobileMenuOpen}
+            aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           >
             <svg
               className="w-6 h-6"
@@ -128,67 +116,32 @@ export default function Navigation({ currentLang, onLangChange }: NavigationProp
           </button>
         </div>
 
-        {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden pb-4">
-            <div className="flex flex-col space-y-3">
-              <Link
-                href="/"
-                className="text-white hover:text-gray-300 transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t.home}
-              </Link>
-              <Link
-                href="/about"
-                className="text-white hover:text-gray-300 transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t.about}
-              </Link>
-              <Link
-                href="/projects"
-                className="text-white hover:text-gray-300 transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t.projects}
-              </Link>
-              <Link
-                href="/interests"
-                className="text-white hover:text-gray-300 transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t.interests}
-              </Link>
-              <Link
-                href="/skills"
-                className="text-white hover:text-gray-300 transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t.skills}
-              </Link>
-              <Link
-                href="/photos"
-                className="text-white hover:text-gray-300 transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t.photos}
-              </Link>
-              <Link
-                href="/contact"
-                className="text-white hover:text-gray-300 transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t.contact}
-              </Link>
+          <div className="border-t border-white/10 pb-4 pt-3 md:hidden">
+            <div className="flex flex-col gap-1">
+              {links.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`px-3 py-3 text-sm font-medium transition-colors ${
+                    isActive(item.href, item.exact)
+                      ? "bg-white/10 text-cyan-100"
+                      : "text-white/85 hover:bg-white/5 hover:text-white"
+                  }`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
               <button
                 onClick={() => {
                   onLangChange(currentLang === "en" ? "zh" : "en");
                   setIsMobileMenuOpen(false);
                 }}
-                className="text-white hover:text-gray-300 transition-colors px-2 py-1 border border-white/30 rounded w-fit"
+                className="mt-2 w-fit border border-white/25 px-3 py-2 text-sm font-semibold text-white transition-colors hover:border-cyan-200 hover:text-cyan-100"
+                aria-label={currentLang === "en" ? "Switch to Chinese" : "Switch to English"}
               >
-                {currentLang === "en" ? "中文" : "EN"}
+                {currentLang === "en" ? "ZH" : "EN"}
               </button>
             </div>
           </div>
@@ -197,4 +150,3 @@ export default function Navigation({ currentLang, onLangChange }: NavigationProp
     </nav>
   );
 }
-

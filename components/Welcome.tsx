@@ -11,7 +11,7 @@ export default function Welcome({ lang }: WelcomeProps) {
     en: {
       heading: "What I Am Building Toward",
       intro:
-        "I am Wei-Jie Wang, a senior in Electrical Engineering at National Taiwan University. I care about building things that are technically solid, understandable to users, and useful beyond a class assignment.",
+        "I am Wei-Jie Wang, a graduate of Electrical Engineering at National Taiwan University. I care about building things that are technically solid, understandable to users, and useful beyond a class assignment.",
       projectsLink: "Projects",
       contactLink: "Contact",
       photosLink: "Photos",
@@ -26,8 +26,12 @@ export default function Welcome({ lang }: WelcomeProps) {
           text: "Several projects combine LINE Bot, LLM analysis, and web dashboards so users can interact through natural language.",
         },
         {
-          title: "EDA/CAD research",
-          text: "I am working on optimization-oriented EDA projects and will begin graduate study in the NTU GIEE EDA group in September 2026.",
+          title: "Logic synthesis research",
+          text: "I will begin graduate study in NTU GIEE in September 2026, joining Prof. Jie-Hong Jiang's ALCom Lab in the Logic Synthesis group.",
+        },
+        {
+          title: "Quantum + EDA public knowledge",
+          text: "After being selected for the Youth Billion IBM Quantum program, I am turning the plan into public writing, technical notes, and an open-source learning example.",
         },
       ],
       closing:
@@ -36,7 +40,7 @@ export default function Welcome({ lang }: WelcomeProps) {
     zh: {
       heading: "我正在累積的方向",
       intro:
-        "我是汪煒杰，目前就讀國立台灣大學電機工程學系大四。我在意的不只是把功能做出來，也希望作品在技術上可靠、對使用者清楚，而且不只是課堂作業。",
+        "我是汪煒杰，畢業於國立台灣大學電機工程學系。我在意的不只是把功能做出來，也希望作品在技術上可靠、對使用者清楚，而且不只是課堂作業。",
       projectsLink: "專案",
       contactLink: "聯絡",
       photosLink: "照片",
@@ -51,8 +55,12 @@ export default function Welcome({ lang }: WelcomeProps) {
           text: "多個專案結合 LINE Bot、LLM 分析與 Web dashboard，讓使用者能用自然語言完成記錄與查詢。",
         },
         {
-          title: "EDA/CAD 研究",
-          text: "我正在做以最佳化為核心的 EDA 專題，也將於 2026 年 9 月進入台大電子所 EDA 組。",
+          title: "邏輯合成研究",
+          text: "我將於 2026 年 9 月進入台大電子所，加入江介宏教授的 ALCom Lab 邏輯合成組。",
+        },
+        {
+          title: "量子 + EDA 公開知識",
+          text: "錄取青年百億 IBM Quantum 計畫後，我會把這份計畫延伸成公開文章、技術筆記與開源學習範例。",
         },
       ],
       closing:

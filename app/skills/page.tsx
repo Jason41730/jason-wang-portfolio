@@ -14,7 +14,7 @@ export default function Skills() {
         "Full-stack web development with modern frameworks and technologies. I've worked with these technologies in various projects and continue to learn and improve my skills.",
       eda: "EDA (Electronic Design Automation)",
       edaDesc:
-        "Electronic Design Automation tools and methodologies for VLSI design optimization. I've worked with these technologies in CAD Contest research projects and continue to learn and improve my skills.",
+        "Electronic Design Automation tools and methodologies for VLSI design optimization, with an upcoming research focus on logic synthesis.",
       programmingLanguages: "Programming Languages",
       toolsFrameworks: "Tools & Frameworks",
       databases: "Databases",
@@ -30,7 +30,7 @@ export default function Skills() {
         "全端網頁開發，使用各種現代框架與技術。我在多個專案中使用過這些技術，並持續學習和提升技能。",
       eda: "EDA (電子設計自動化)",
       edaDesc:
-        "用於 VLSI 設計最佳化的電子設計自動化工具與方法。我在 CAD Contest 研究專案中使用過這些技術，並持續學習和提升技能。",
+        "用於 VLSI 設計最佳化的電子設計自動化工具與方法，接下來也會延伸到邏輯合成研究。",
       programmingLanguages: "程式語言",
       toolsFrameworks: "工具與框架",
       databases: "資料庫",
@@ -199,7 +199,7 @@ export default function Skills() {
       en: {
         title: "EDA (Electronic Design Automation)",
         description:
-          "Electronic Design Automation tools and methodologies for VLSI design optimization. I've worked with these technologies in CAD Contest research projects and continue to learn and improve my skills.",
+          "Electronic Design Automation tools and methodologies for VLSI design optimization, with an upcoming research focus on logic synthesis.",
         items: [
           {
             category: "Design Optimization",
@@ -225,12 +225,20 @@ export default function Skills() {
               zh: "實作和修改用於 EDA 問題的演算法",
             },
           },
+          {
+            category: "Research Direction",
+            skills: ["Logic Synthesis", "Circuit Optimization", "Quantum Computing"],
+            description: {
+              en: "Preparing for graduate research in synthesis, optimization, and quantum-aware system design",
+              zh: "準備進入合成、最佳化與量子相關系統設計的研究方向",
+            },
+          },
         ],
       },
       zh: {
         title: "EDA (電子設計自動化)",
         description:
-          "用於 VLSI 設計最佳化的電子設計自動化工具與方法。我在 CAD Contest 研究專案中使用過這些技術，並持續學習和提升技能。",
+          "用於 VLSI 設計最佳化的電子設計自動化工具與方法，接下來也會延伸到邏輯合成研究。",
         items: [
           {
             category: "設計最佳化",
@@ -256,6 +264,14 @@ export default function Skills() {
               zh: "實作和修改用於 EDA 問題的演算法",
             },
           },
+          {
+            category: "研究方向",
+            skills: ["邏輯合成", "電路最佳化", "量子運算"],
+            description: {
+              en: "Preparing for graduate research in synthesis, optimization, and quantum-aware system design",
+              zh: "準備進入合成、最佳化與量子相關系統設計的研究方向",
+            },
+          },
         ],
       },
     },
@@ -267,7 +283,7 @@ export default function Skills() {
   const tools = skills.toolsFrameworks[lang];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-slate-50">
       <section className="py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -281,7 +297,7 @@ export default function Skills() {
 
           {/* Web Programming - Main Section */}
           <div className="mb-12">
-            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-8 mb-6">
+            <div className="mb-6 border-l-4 border-blue-500 bg-white p-8 shadow-sm">
               <h2 className="text-3xl font-bold text-gray-900 mb-3">
                 {webSkills.title}
               </h2>
@@ -294,7 +310,7 @@ export default function Skills() {
               {webSkills.items.map((item, index) => (
                 <div
                   key={index}
-                  className="bg-white border-2 border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow flex flex-col"
+                  className="flex flex-col border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-lg"
                 >
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
                     {item.category}
@@ -306,7 +322,7 @@ export default function Skills() {
                     {item.skills.map((skill, skillIndex) => (
                       <span
                         key={skillIndex}
-                        className="px-3 py-1 bg-blue-600 text-white text-sm rounded-full font-medium"
+                        className="bg-blue-600 px-3 py-1 text-sm font-medium text-white"
                       >
                         {skill}
                       </span>
@@ -321,12 +337,12 @@ export default function Skills() {
               <h2 className="text-2xl font-bold text-gray-900 mb-4">
                 {t.programmingLanguages}
               </h2>
-              <div className="bg-gray-50 rounded-lg p-6">
+              <div className="border border-gray-200 bg-white p-6 shadow-sm">
                 <div className="flex flex-wrap gap-2">
                   {programmingLangs.map((lang, index) => (
                     <span
                       key={index}
-                      className="px-4 py-2 bg-gray-700 text-white text-sm rounded-lg font-medium"
+                      className="bg-gray-700 px-4 py-2 text-sm font-medium text-white"
                     >
                       {lang}
                     </span>
@@ -340,12 +356,12 @@ export default function Skills() {
               <h2 className="text-2xl font-bold text-gray-900 mb-4">
                 {t.toolsFrameworks}
               </h2>
-              <div className="bg-gray-50 rounded-lg p-6">
+              <div className="border border-gray-200 bg-white p-6 shadow-sm">
                 <div className="flex flex-wrap gap-2">
                   {tools.map((tool, index) => (
                     <span
                       key={index}
-                      className="px-4 py-2 bg-gray-700 text-white text-sm rounded-lg font-medium"
+                      className="bg-gray-700 px-4 py-2 text-sm font-medium text-white"
                     >
                       {tool}
                     </span>
@@ -357,7 +373,7 @@ export default function Skills() {
 
           {/* EDA - Main Section */}
           <div className="mb-12">
-            <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-8 mb-6">
+            <div className="mb-6 border-l-4 border-cyan-600 bg-white p-8 shadow-sm">
               <h2 className="text-3xl font-bold text-gray-900 mb-3">
                 {edaSkills.title}
               </h2>
@@ -370,7 +386,7 @@ export default function Skills() {
               {edaSkills.items.map((item, index) => (
                 <div
                   key={index}
-                  className="bg-white border-2 border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow flex flex-col"
+                  className="flex flex-col border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-lg"
                 >
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
                     {item.category}
@@ -382,7 +398,7 @@ export default function Skills() {
                     {item.skills.map((skill, skillIndex) => (
                       <span
                         key={skillIndex}
-                        className="px-3 py-1 bg-purple-600 text-white text-sm rounded-full font-medium"
+                        className="bg-cyan-700 px-3 py-1 text-sm font-medium text-white"
                       >
                         {skill}
                       </span>
