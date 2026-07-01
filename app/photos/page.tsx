@@ -18,21 +18,7 @@ interface Photo {
   aspectClass?: string;
 }
 
-const localPhotos: Photo[] = [
-  {
-    id: "original-profile",
-    url: "/images/photo-original-profile.jpg",
-    width: 300,
-    height: 300,
-    format: "jpg",
-    createdAt: "2025-12-27",
-    titleEn: "Original profile portrait",
-    titleZh: "原本的大頭貼",
-    captionEn: "A clean portrait I still like, kept here as part of the archive.",
-    captionZh: "這張原本的大頭貼我也覺得好看，所以先放進照片頁保存。",
-    aspectClass: "aspect-square",
-  },
-];
+const localPhotos: Photo[] = [];
 
 export default function Photos() {
   const { lang } = useLanguage();
@@ -52,7 +38,7 @@ export default function Photos() {
         "Cloud photos could not be loaded right now, so local highlights are shown first.",
       close: "Close photo",
       photoAlt: "Portfolio photo",
-      localFirst: "Local highlights",
+      localFirst: "Photo archive",
     },
     zh: {
       heading: "照片",
@@ -62,7 +48,7 @@ export default function Photos() {
       loadError: "目前無法載入雲端照片，所以先顯示本機精選照片。",
       close: "關閉照片",
       photoAlt: "作品集照片",
-      localFirst: "本機精選",
+      localFirst: "照片集",
     },
   };
 
